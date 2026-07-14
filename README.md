@@ -1,12 +1,49 @@
-﻿<!-- codex-summary:start -->
+<!-- codex-summary:start -->
 # mm.test
 
 An SAP Fiori application.
 
-## 프로젝트 개요
+## 구현 기능 요약
 
-- 유형: SAPUI5 애플리케이션
-- 주요 패키지: @sap/ux-ui5-tooling, @sap-ux/ui5-middleware-fe-mockserver, @ui5/cli, rimraf
+### App 화면
+
+- 역할: 화면 정보 표시와 사용자 입력 처리
+
+### Bill Detail 화면
+
+- 역할: 업무 명령 실행
+- 사용자 동작: 이전 화면으로 이동 [onNavBack], 신규 등록 [onCreateInvoice]
+- 처리 내용: OData/모델 데이터를 조회해 화면에 바인딩; 목록·상세·등록 화면 사이를 이동; 검색 조건으로 목록을 필터링; 표시 데이터를 정렬; 처리 결과와 오류 메시지를 사용자에게 안내
+
+### Date Setup 화면
+
+- 역할: 조건 입력 및 값 선택, 상세 정보 표시·편집, 업무 명령 실행
+- 사용자 동작: Start [onStart]
+- 처리 내용: 목록·상세·등록 화면 사이를 이동; 처리 결과와 오류 메시지를 사용자에게 안내
+
+### Invoice Create 화면
+
+- 역할: 목록 조회 및 항목 선택, 조건 입력 및 값 선택, 업무 명령 실행
+- 주요 항목: Z000 · 0일 이내(즉시), Z030 · 30일 이내, Z060 · 60일 이내
+- 사용자 동작: 메인 화면으로 이동 [onNavMain], 관련 화면으로 이동 [onNavBillDetail], 이전 화면으로 이동 [onNavBack], 상세 정보 열기 [onShowInvoiceProcessFlow], 상세 정보 열기 [onShowMatchIssueDetail], Invoice Footer Action [onInvoiceFooterAction], 선택 항목 삭제 [onDeleteInvoice]
+- 처리 내용: OData/모델 데이터를 조회해 화면에 바인딩; 신규 데이터를 생성하고 서버에 저장; 입력값 또는 선택 데이터를 수정; 선택 데이터를 삭제; 목록·상세·등록 화면 사이를 이동; 검색 조건으로 목록을 필터링; 표시 데이터를 정렬; 처리 결과와 오류 메시지를 사용자에게 안내; 팝업/다이얼로그를 열어 추가 입력이나 확인을 처리
+
+### Main 화면
+
+- 역할: 목록 조회 및 항목 선택, 조건 입력 및 값 선택, 업무 명령 실행
+- 사용자 동작: 조건 검색 [onResetSearch], 조건 검색 [onSearch], 기능 실행 [onStatusCardPress], 데이터 새로고침 [onRefresh], 기능 실행 [onBillPress]
+- 처리 내용: OData/모델 데이터를 조회해 화면에 바인딩; 입력값 또는 선택 데이터를 수정; 목록·상세·등록 화면 사이를 이동; 검색 조건으로 목록을 필터링; 표시 데이터를 정렬; 처리 결과와 오류 메시지를 사용자에게 안내
+
+### Test 화면
+
+- 역할: 화면 정보 표시와 사용자 입력 처리
+- 주요 항목: Test view
+
+### Three Way Match 화면
+
+- 역할: 목록 조회 및 항목 선택, 업무 명령 실행
+- 사용자 동작: 메인 화면으로 이동 [onNavMain], 관련 화면으로 이동 [onNavBillDetail], 관련 화면으로 이동 [onNavInvoiceCreate], 이전 화면으로 이동 [onNavBack], 상세 정보 열기 [onShowMismatch], 신규 등록 [onProceedRegister]
+- 처리 내용: OData/모델 데이터를 조회해 화면에 바인딩; 입력값 또는 선택 데이터를 수정; 목록·상세·등록 화면 사이를 이동; 검색 조건으로 목록을 필터링; 표시 데이터를 정렬; 처리 결과와 오류 메시지를 사용자에게 안내
 
 ## 실행 방법
 
@@ -14,13 +51,6 @@ An SAP Fiori application.
 npm install
 npm start
 ```
-
-## 주요 구조
-
-- `webapp/`: 애플리케이션 소스
-- `webapp/manifest.json`: 앱 설정, 모델, 데이터 소스 및 라우팅
-- `ui5.yaml`: UI5 Tooling 설정
-- `package.json`: 실행 스크립트와 의존성
 
 <!-- codex-summary:end -->
 
@@ -66,6 +96,3 @@ An SAP Fiori application.
 #### Pre-requisites:
 
 1. Active NodeJS LTS (Long Term Support) version and associated supported NPM version.  (See https://nodejs.org)
-
-
-

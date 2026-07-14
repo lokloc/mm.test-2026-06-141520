@@ -1,0 +1,4753 @@
+[
+  {
+    "module": "Material Management ( MM )",
+    "date": "2026-07-02",
+    "author": "권주한",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": "표준"
+      },
+      {
+        "no": 2,
+        "field": "MATNR",
+        "description": "[MM] 자재번호",
+        "element": "ZED1_MM_MATNR",
+        "domain": "ZDD1_MM_MATNR",
+        "type": "CHAR",
+        "length": 5,
+        "remark": "자재 식별키"
+      },
+      {
+        "no": 3,
+        "field": "MTART",
+        "description": "[MM] 자재유형",
+        "element": "ZED1_MM_MTART",
+        "domain": "ZDD1_MM_MTART",
+        "type": "CHAR",
+        "length": 1,
+        "remark": "원유/반제품/완제품 등"
+      },
+      {
+        "no": 4,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": "단위 Master 참조"
+      },
+      {
+        "no": 5,
+        "field": "PRICE_API_CODE",
+        "description": "[MM]유가조회코드",
+        "element": "ZED1_MM_PRICE_API_CODE",
+        "domain": "ZDD1_MM_PRICE_API_CODE",
+        "type": "CHAR",
+        "length": 30,
+        "remark": "유가 API 코드"
+      },
+      {
+        "no": 6,
+        "field": "ERNAM",
+        "description": "[CM] 생성자",
+        "element": "ZED1_CM_ERNAM",
+        "domain": "ZDD1_CM_ERNAM",
+        "type": "CHAR",
+        "length": 12,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "ERDAT",
+        "description": "[CM] 생성일",
+        "element": "ZED1_CM_ERDAT",
+        "domain": "ZDD1_CM_ERDAT",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "ERZET",
+        "description": "[CM] 생성시간",
+        "element": "ZED1_CM_ERZET",
+        "domain": "ZDD1_CM_ERZET",
+        "type": "TIMS",
+        "length": 6,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "AENAM",
+        "description": "[CM] 변경자",
+        "element": "ZED1_CM_AENAM",
+        "domain": "ZDD1_CM_AENAM",
+        "type": "CHAR",
+        "length": 12,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "AEDAT",
+        "description": "[CM] 변경일",
+        "element": "ZED1_CM_AEDAT",
+        "domain": "ZDD1_CM_AEDAT",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "AEZET",
+        "description": "[CM] 변경시간",
+        "element": "ZED1_CM_AEZET",
+        "domain": "ZDD1_CM_AEZET",
+        "type": "TIMS",
+        "length": 6,
+        "remark": null
+      }
+    ],
+    "code": "ZTD1MM0001",
+    "name": "자재마스터",
+    "purpose": "자재 기준 테이블",
+    "include": {
+      "element": "ZSD1CM0001"
+    }
+  },
+  {
+    "module": "Material Management ( MM )",
+    "date": "2026-07-02",
+    "author": "권주한",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": "표준"
+      },
+      {
+        "no": 2,
+        "field": "WERKS",
+        "description": "[PP] 플랜트 ID",
+        "element": "ZED1_PP_WERKS",
+        "domain": "ZDD1_PP_WERKS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "LGORT",
+        "description": "[MM] Storage Location",
+        "element": "ZED1_MM_LGORT",
+        "domain": "ZDD1_MM_LGORT",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "TNAME",
+        "description": "[MM] 탱크 명",
+        "element": "ZED1_MM_TNAME",
+        "domain": "ZDD1_MM_TNAME",
+        "type": "CHAR",
+        "length": 20,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "MATNR",
+        "description": "[MM] 탱크안에 들어있는 자재",
+        "element": "ZED1_MM_TKMAT",
+        "domain": "ZDD1_MM_TKMAT",
+        "type": "CHAR",
+        "length": 5,
+        "remark": "탱크안에 있는 자재"
+      },
+      {
+        "no": 6,
+        "field": "STAT",
+        "description": "[MM] 탱크 상태 필드",
+        "element": "ZED1_MM_TSTAT",
+        "domain": "ZDD1_MM_TSTAT",
+        "type": "CHAR",
+        "length": 1,
+        "remark": "사용가능, 사용중, 예약중, 청소중"
+      },
+      {
+        "no": 7,
+        "field": "CAPICITY",
+        "description": "[MM] 탱크 최대 용량",
+        "element": "ZED1_MM_TKCAP",
+        "domain": "ZDD1_MM_TKCAP",
+        "type": "QUAN",
+        "length": 24,
+        "remark": "탱크용량"
+      },
+      {
+        "no": 8,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": "BBL"
+      },
+      {
+        "no": 9,
+        "field": "RESNR",
+        "description": "[MM] 탱크 예약번호",
+        "element": "ZED1_MM_RESNR",
+        "domain": "ZDD1_MM_RESNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": "P100021"
+      },
+      {
+        "no": 10,
+        "field": "PICK_AV",
+        "description": "[MM] 피킹 가능 여부",
+        "element": "ZED1_MM_PICKA",
+        "domain": "ZDD1_MM_PICKA",
+        "type": "CHAR",
+        "length": 1,
+        "remark": null
+      }
+    ],
+    "code": "ZTD1MM0002",
+    "name": "저장위치 마스터(탱크 마스터)",
+    "purpose": "(프로그램 나오면 정의)"
+  },
+  {
+    "module": "Material Management ( MM )",
+    "date": "2026-07-02",
+    "author": "권주한",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": "표준"
+      },
+      {
+        "no": 2,
+        "field": "MATNR",
+        "description": "[MM] 자재번호",
+        "element": "ZED1_MM_MATNR",
+        "domain": "ZDD1_MM_MATNR",
+        "type": "CHAR",
+        "length": 5,
+        "remark": "자재 식별키"
+      },
+      {
+        "no": 3,
+        "field": "WERKS",
+        "description": "[PP] 플랜트 ID",
+        "element": "ZED1_PP_WERKS",
+        "domain": "ZDD1_PP_WERKS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "LGORT",
+        "description": "[MM] Storage Location",
+        "element": "ZED1_MM_LGORT",
+        "domain": "ZDD1_MM_LGORT",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "BATCH_ID",
+        "description": "[MM] 품질관리 번호",
+        "element": "ZED1_MM_BATCH",
+        "domain": "ZDD1_MM_BATCH",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "TEMP_V",
+        "description": "[MM] 온도",
+        "element": "ZED1_MM_TEMP",
+        "domain": "ZDD1_MM_TEMP",
+        "type": "DEC",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "TEMP_UNIT",
+        "description": "[MM] 온도 단위",
+        "element": "ZED1_MM_TEMP_UNIT",
+        "domain": "ZDD1_MM_TEMP_UNIT",
+        "type": "UNIT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "API_G",
+        "description": "[MM] API GRAVITY",
+        "element": "ZED1_MM_API_G",
+        "domain": "ZDD1_MM_API_G",
+        "type": "DEC",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "SULF_C",
+        "description": "[MM] Sulfur Content",
+        "element": "ZED1_MM_SULF_C",
+        "domain": "ZDD1_MM_SULF_C",
+        "type": "DEC",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "QUANTITY",
+        "description": "[MM] 15도 기준 실 수량",
+        "element": "ZED1_MM_QUANT",
+        "domain": "ZDD1_MM_QUANT",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "QTY15",
+        "description": "[MM] 온도 부피 보정 전 수량",
+        "element": "ZED1_MM_QTY15",
+        "domain": "ZDD1_MM_QTY15",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 12,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": "단위 Master 참조"
+      },
+      {
+        "no": 13,
+        "field": "LABST",
+        "description": "[MM] 가용재고",
+        "element": "ZED1_MM_LABST",
+        "domain": "ZDD1_MM_LABST",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 14,
+        "field": "SALK3",
+        "description": "[MM] 재고금액",
+        "element": "ZED1_MM_SALK3",
+        "domain": "ZDD1_MM_SALK3",
+        "type": "CURR",
+        "length": 31,
+        "remark": null
+      },
+      {
+        "no": 15,
+        "field": "WAERS",
+        "description": "[MM] 통화",
+        "element": "ZED1_MM_WAERS",
+        "domain": "ZDD1_MM_WAERS",
+        "type": "CUKY",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 16,
+        "field": "PICK_Q",
+        "description": "[MM] 피킹 유량",
+        "element": "ZED1_MM_PICKQ",
+        "domain": "ZDD1_MM_PICKQ",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      }
+    ],
+    "code": "ZTD1MM0003",
+    "name": "저장위치 자재(재고 테이블)",
+    "purpose": "(프로그램 나오면 정의)"
+  },
+  {
+    "module": "Material Management ( MM )",
+    "date": "2026-07-02",
+    "author": "권주한",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": "클라이언트"
+      },
+      {
+        "no": 2,
+        "field": "LIFNR",
+        "description": "[MM] 공급업체 ID",
+        "element": "ZED1_MM_LIFNR",
+        "domain": "ZDD1_MM_LIFNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "NAME1",
+        "description": "[MM] 공급업체명",
+        "element": "ZED1_MM_VENDNME",
+        "domain": "ZDD1_MM_VENDNME",
+        "type": "CHAR",
+        "length": 40,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "LAND1",
+        "description": "[MM] 국가/지역키",
+        "element": "ZED1_MM_LAND1",
+        "domain": "ZDD1_MM_LAND1",
+        "type": "CHAR",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "LAND1M",
+        "description": "[MM] 국가명",
+        "element": "ZED1_MM_LAND1M",
+        "domain": "ZDD1_MM_LAND1M",
+        "type": "CHAR",
+        "length": 35,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "REGIO",
+        "description": "[MM] 지역/주명",
+        "element": "ZED1_MM_REGIO",
+        "domain": "ZDD1_MM_REGIO",
+        "type": "CHAR",
+        "length": 35,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "ORT01",
+        "description": "[MM] 도시명",
+        "element": "ZED1_MM_ORT01",
+        "domain": "ZDD1_MM_ORT01",
+        "type": "CHAR",
+        "length": 35,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "STRAS",
+        "description": "[MM] 주소",
+        "element": "ZED1_MM_STRAS",
+        "domain": "ZDD1_MM_STRAS",
+        "type": "CHAR",
+        "length": 35,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "PSTLZ",
+        "description": "[MM] 우편번호",
+        "element": "ZED1_MM_PSTLZ",
+        "domain": "ZDD1_MM_PSTLZ",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "TELF1",
+        "description": "[MM] 연락처",
+        "element": "ZED1_MM_TELF1",
+        "domain": "ZDD1_MM_TELF1",
+        "type": "CHAR",
+        "length": 16,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "LIF_EMAIL",
+        "description": "[MM] 공급업체 이메일",
+        "element": "ZED1_MM_LIFMAIL",
+        "domain": "ZDD1_MM_LIFMAIL",
+        "type": "CHAR",
+        "length": 40,
+        "remark": null
+      },
+      {
+        "no": 12,
+        "field": "ZTERM",
+        "description": "[FI] 지급조건",
+        "element": "ZED1_FI_ZTERM",
+        "domain": "ZDD1_FI_ZTERM",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 13,
+        "field": "HKONT",
+        "description": "[FI] G/L 계정 번호",
+        "element": "ZED1_FI_SAKNR",
+        "domain": "ZDD1_FI_SAKNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 14,
+        "field": "WAERS",
+        "description": "[CM] 통화코드",
+        "element": "ZED1_CM_WAERS",
+        "domain": "ZDD1_CM_WAERS",
+        "type": "CUKY",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 15,
+        "field": "BUKRS",
+        "description": "[CM] 회사코드",
+        "element": "ZED1_CM_BUKRS",
+        "domain": "ZDD1_CM_BUKRS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 16,
+        "field": "HERKL",
+        "description": "[MM] 원산지",
+        "element": "ZED1_MM_HERKL",
+        "domain": "ZDD1_MM_HERKL",
+        "type": "CHAR",
+        "length": 3,
+        "remark": null
+      }
+    ],
+    "code": "ZTD1MM0004",
+    "name": "공급업체 마스터",
+    "purpose": "(프로그램 나오면 정의)"
+  },
+  {
+    "module": "Material Management ( MM )",
+    "date": "2026-07-02",
+    "author": "권주한",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": "표준"
+      },
+      {
+        "no": 2,
+        "field": "RDATE",
+        "description": "[MM] 기준일시",
+        "element": "ZED1_MM_RDATE",
+        "domain": "ZDD1_MM_RDATE",
+        "type": "UTCLONG",
+        "length": 27,
+        "remark": "이 가격이 적용되는 기준 날짜"
+      },
+      {
+        "no": 3,
+        "field": "OILCODE",
+        "description": "[MM] 유가 조회 코드",
+        "element": "ZED1_MM_OILCODE",
+        "domain": "ZDD1_MM_OILCODE",
+        "type": "CHAR",
+        "length": 30,
+        "remark": "Dubai, Brent 같은 유종"
+      },
+      {
+        "no": 4,
+        "field": "PRICE",
+        "description": "[MM] 금액",
+        "element": "ZED1_MM_PRICE",
+        "domain": "ZDD1_MM_PRICE",
+        "type": "CURR",
+        "length": 23,
+        "remark": "중동, 유럽 등"
+      },
+      {
+        "no": 5,
+        "field": "WAERS",
+        "description": "[MM] 통화",
+        "element": "ZED1_MM_WAERS",
+        "domain": "ZDD1_MM_WAERS",
+        "type": "CUKY",
+        "length": 5,
+        "remark": "시장 기준 유가"
+      },
+      {
+        "no": 6,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": "USD 등"
+      },
+      {
+        "no": 7,
+        "field": "SOURCE",
+        "description": "[MM] Source from (출처)",
+        "element": "ZED1_MM_SOURCE",
+        "domain": "ZDD1_MM_SOURCE",
+        "type": "CHAR",
+        "length": 50,
+        "remark": "시장가, 계약가 등"
+      },
+      {
+        "no": 8,
+        "field": "PRICE_TYPE",
+        "description": "[MM] 가격 유형",
+        "element": "ZED1_MM_PRICE_T",
+        "domain": "ZDD1_MM_PRICE_T",
+        "type": "CHAR",
+        "length": 20,
+        "remark": "BBL"
+      },
+      {
+        "no": 9,
+        "field": "P_PRICE",
+        "description": "[MM] 이전 가격",
+        "element": "ZED1_MM_P_PRICE",
+        "domain": "ZDD1_MM_P_PRICE",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "AMOUNT24",
+        "description": "[MM] 24시간 변동추이 (금액)",
+        "element": "ZED1_MM_AMOUNT24",
+        "domain": "ZDD1_MM_AMOUNT24",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "PERCENT24",
+        "description": "[MM] 24시간 변동추이 (퍼센트)",
+        "element": "ZED1_MM_PERCENT24",
+        "domain": "ZDD1_MM_PERCENT24",
+        "type": "DEC",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 12,
+        "field": "ODATE",
+        "description": "[CM] 날짜 공용 Element",
+        "element": "ZED1_CM_DATS",
+        "domain": "ZDD1_CM_DATS",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      }
+    ],
+    "code": "ZTD1MM0005",
+    "name": "유가",
+    "purpose": "(프로그램 나오면 정의)"
+  },
+  {
+    "module": "Material Management ( MM )",
+    "date": "2026-07-02",
+    "author": "권주한",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": "표준"
+      },
+      {
+        "no": 2,
+        "field": "RDATE",
+        "description": "[MM] 유효시작일",
+        "element": "ZED1_MM_PRM_RDATE",
+        "domain": "ZDD1_MM_PRM_RDATE",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "LIFNR",
+        "description": "[MM] 공급업체 ID",
+        "element": "ZED1_MM_LIFNR",
+        "domain": "ZDD1_MM_LIFNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": "FK→공급업체마스터"
+      },
+      {
+        "no": 4,
+        "field": "CONTRACT_ID",
+        "description": "[MM] 계약 ID",
+        "element": "ZED1_MM_CONTRACT_ID",
+        "domain": "ZDD1_MM_CONTRACT_ID",
+        "type": "CHAR",
+        "length": 10,
+        "remark": "FK→계약 헤더\n 장기계약만"
+      },
+      {
+        "no": 5,
+        "field": "CTTYPE",
+        "description": "[MM] 구매 계약 유형",
+        "element": "ZED1_MM_CTRCT_TYPE",
+        "domain": "ZDD1_MM_CTRCT_TYPE",
+        "type": "CHAR",
+        "length": 1,
+        "remark": "L=장기/S=스팟"
+      },
+      {
+        "no": 6,
+        "field": "MATNR",
+        "description": "[MM] 자재번호",
+        "element": "ZED1_MM_MATNR",
+        "domain": "ZDD1_MM_MATNR",
+        "type": "CHAR",
+        "length": 5,
+        "remark": "FK→자재마스터"
+      },
+      {
+        "no": 7,
+        "field": "OILCODE",
+        "description": "[MM] 유가 조회 코드",
+        "element": "ZED1_MM_OILCODE",
+        "domain": "ZDD1_MM_OILCODE",
+        "type": "CHAR",
+        "length": 30,
+        "remark": "Dubai, Brent 같은 유종"
+      },
+      {
+        "no": 8,
+        "field": "PREMI",
+        "description": "[MM] OSP Premium 금액",
+        "element": "ZED1_MM_PREMIUM",
+        "domain": "ZDD1_MM_PREMIUM",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "FREIGHT",
+        "description": "[MM] 운임 금액",
+        "element": "ZED1_MM_FREIGHT",
+        "domain": "ZDD1_MM_FREIGHT",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "INSUR",
+        "description": "[MM] 보험료 금액",
+        "element": "ZED1_MM_INSUR",
+        "domain": "ZDD1_MM_INSUR",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "WAERS",
+        "description": "[MM] 통화",
+        "element": "ZED1_MM_WAERS",
+        "domain": "ZDD1_MM_WAERS",
+        "type": "CUKY",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 12,
+        "field": "ENDDAT",
+        "description": "[MM] 유효 종료일",
+        "element": "ZED1_MM_ENDDAT",
+        "domain": "ZDD1_MM_ENDDAT",
+        "type": "DATS",
+        "length": 8,
+        "remark": "장기=계약종료일/스팟=''"
+      }
+    ],
+    "code": "ZTD1MM0006",
+    "name": "프리미엄 기준가",
+    "purpose": "(프로그램 나오면 정의)"
+  },
+  {
+    "module": "Material Management ( MM )",
+    "date": "2026-07-02",
+    "author": "권주한",
+    "fields": [
+      {
+        "no": 1,
+        "field": "CONTRACT_ID",
+        "description": "[MM] 계약 ID",
+        "element": "ZED1_MM_CONTRACT_ID",
+        "domain": "ZDD1_MM_CONTRACT_ID",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "LIFNR",
+        "description": "[MM] 공급업체 ID",
+        "element": "ZED1_MM_LIFNR",
+        "domain": "ZDD1_MM_LIFNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "EKORG",
+        "description": "[MM] 구매조직",
+        "element": "ZED1_MM_EKORG",
+        "domain": "ZDD1_MM_EKORG",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "BUKRS",
+        "description": "[FI] 회사 코드",
+        "element": "ZED1_FI_BUKRS",
+        "domain": "ZDD1_FI_BUKRS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "CONTRACT_AMT",
+        "description": "[MM] 계약 규모 금액",
+        "element": "ZED1_MM_CTAMT",
+        "domain": "ZDD1_MM_CTAMT",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "WAERS",
+        "description": "[MM] 통화",
+        "element": "ZED1_MM_WAERS",
+        "domain": "ZDD1_MM_WAERS",
+        "type": "CUKY",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "KDAT",
+        "description": "[MM] 계약 기준일자",
+        "element": "ZED1_MM_KDAT",
+        "domain": "ZDD1_MM_KDAT",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "KDATB",
+        "description": "[MM] 계약 시작일",
+        "element": "ZED1_MM_KDATB",
+        "domain": "ZDD1_MM_KDATB",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "KDATE",
+        "description": "[MM] 계약 종료일",
+        "element": "ZED1_MM_KDATE",
+        "domain": "ZDD1_MM_KDATE",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "OILCODE",
+        "description": "[MM] 유가 조회 코드",
+        "element": "ZED1_MM_OILCODE",
+        "domain": "ZDD1_MM_OILCODE",
+        "type": "CHAR",
+        "length": 30,
+        "remark": "Dubai, Brent 같은 유종"
+      },
+      {
+        "no": 11,
+        "field": "INCO1",
+        "description": "[MM] 인코텀즈",
+        "element": "ZED1_MM_INCO1",
+        "domain": "ZDD1_MM_INCO1",
+        "type": "CHAR",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 12,
+        "field": "ZTERM",
+        "description": "[FI] 지급조건",
+        "element": "ZED1_FI_ZTERM",
+        "domain": "ZDD1_FI_ZTERM",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 13,
+        "field": "ZINFO_TEXT",
+        "description": "[MM] 설명",
+        "element": "ZED1_MM_ZINFO",
+        "domain": "ZDD1_MM_ZINFO",
+        "type": "CHAR",
+        "length": 255,
+        "remark": null
+      }
+    ],
+    "code": "ZTD1MM0007",
+    "name": "계약헤더",
+    "purpose": "(프로그램 나오면 정의)"
+  },
+  {
+    "module": "Material Management ( MM )",
+    "date": "2026-07-02",
+    "author": "권주한",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": "표준"
+      },
+      {
+        "no": 2,
+        "field": "CONTRACT_ID",
+        "description": "[MM] 계약 ID",
+        "element": "ZED1_MM_CONTRACT_ID",
+        "domain": "ZDD1_MM_CONTRACT_ID",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "CONTRACT_ITEM",
+        "description": "[MM] 계약품목",
+        "element": "ZED1_MM_CONTRACT_ITEM",
+        "domain": "ZDD1_MM_CONTRACT_ITEM",
+        "type": "NUMC",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "MATNR",
+        "description": "[MM] 자재번호",
+        "element": "ZED1_MM_MATNR",
+        "domain": "ZDD1_MM_MATNR",
+        "type": "CHAR",
+        "length": 5,
+        "remark": "자재 식별키"
+      },
+      {
+        "no": 5,
+        "field": "T_QUANTITY",
+        "description": "[MM] 총 계약수량",
+        "element": "ZED1_MM_TQTY",
+        "domain": "ZDD1_MM_TQTY",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": "단위 Master 참조"
+      },
+      {
+        "no": 7,
+        "field": "MIN_QTY",
+        "description": "[MM] 최소 주문 수량",
+        "element": "ZED1_MM_MQTY",
+        "domain": "ZDD1_MM_MQTY",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "MAX_QTY",
+        "description": "[MM] 최대 주문 수량 (1회)",
+        "element": "ZED1_MM_MAXQTY",
+        "domain": "ZDD1_MM_MAXQTY",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "KDATB",
+        "description": "[MM] 계약 시작일",
+        "element": "ZED1_MM_KDATB",
+        "domain": "ZDD1_MM_KDATB",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "KDATE",
+        "description": "[MM] 계약 종료일",
+        "element": "ZED1_MM_KDATE",
+        "domain": "ZDD1_MM_KDATE",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "MWSKZ",
+        "description": "[FI] 세금코드",
+        "element": "ZED1_FI_MWSKZ",
+        "domain": "ZDD1_FI_MWSKZ",
+        "type": "CHAR",
+        "length": 2,
+        "remark": null
+      },
+      {
+        "no": 12,
+        "field": "PREMIUM",
+        "description": "[MM] OSP Premium 금액",
+        "element": "ZED1_MM_PREMIUM",
+        "domain": "ZDD1_MM_PREMIUM",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 13,
+        "field": "WAERS",
+        "description": "[MM] 통화",
+        "element": "ZED1_MM_WAERS",
+        "domain": "ZDD1_MM_WAERS",
+        "type": "CUKY",
+        "length": 5,
+        "remark": null
+      }
+    ],
+    "code": "ZTD1MM0008",
+    "name": "계약 아이템",
+    "purpose": "(프로그램 나오면 정의)"
+  },
+  {
+    "module": "Material Management ( MM )",
+    "date": "2026-07-02",
+    "author": "권주한",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": "표준"
+      },
+      {
+        "no": 2,
+        "field": "MATNR",
+        "description": "[MM] 자재번호",
+        "element": "ZED1_MM_MATNR",
+        "domain": "ZDD1_MM_MATNR",
+        "type": "CHAR",
+        "length": 5,
+        "remark": "자재 식별키"
+      },
+      {
+        "no": 3,
+        "field": "LANGUAGE",
+        "description": "Language Key",
+        "element": "SPRAS",
+        "domain": "SPRAS",
+        "type": "LANG",
+        "length": 1,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "MAKTX",
+        "description": "[MM] 자재명",
+        "element": "ZED1_MM_MAKTX",
+        "domain": "ZDD1_MM_MAKTX",
+        "type": "CHAR",
+        "length": 40,
+        "remark": null
+      }
+    ],
+    "code": "ZTD1MM0009",
+    "name": "자재 텍스트 테이블",
+    "purpose": "(프로그램 나오면 정의)"
+  },
+  {
+    "module": "Material Management ( MM )",
+    "date": "2026-07-02",
+    "author": "권주한",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": "표준"
+      },
+      {
+        "no": 2,
+        "field": "BNFPO",
+        "description": "[MM] Purchase Requisition",
+        "element": "ZED1_MM_BNFPO",
+        "domain": "ZDD1_MM_BNFPO",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "MATNR",
+        "description": "[MM] 자재번호",
+        "element": "ZED1_MM_MATNR",
+        "domain": "ZDD1_MM_MATNR",
+        "type": "CHAR",
+        "length": 5,
+        "remark": "자재 식별키"
+      },
+      {
+        "no": 4,
+        "field": "WERKS",
+        "description": "[PP] 플랜트 ID",
+        "element": "ZED1_PP_WERKS",
+        "domain": "ZDD1_PP_WERKS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "FLIEF",
+        "description": "[MM] 공급업체 ID",
+        "element": "ZED1_MM_LIFNR",
+        "domain": "ZDD1_MM_LIFNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "MENGE",
+        "description": "[MM] 수량",
+        "element": "ZED1_MM_MENGE",
+        "domain": "ZDD1_MM_MENGE",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": "단위 Master 참조"
+      },
+      {
+        "no": 8,
+        "field": "LFDAT",
+        "description": "[MM] 요구 납기일",
+        "element": "ZED1_MM_LFDAT",
+        "domain": "ZDD1_MM_LFDAT",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "FGGZU",
+        "description": "[MM] 승인상태",
+        "element": "ZED1_MM_FGGZU",
+        "domain": "ZDD1_MM_FGGZU",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "ESTKZ",
+        "description": "[MM] 생성구분",
+        "element": "ZED1_MM_ESTKZ",
+        "domain": "ZDD1_MM_ESTKZ",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "EBELN",
+        "description": "[MM] 참조 PO 번호",
+        "element": "ZED1_MM_EBELN",
+        "domain": "ZDD1_MM_EBELN",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      }
+    ],
+    "code": "ZTD1MM0010",
+    "name": "구매요청",
+    "purpose": "(프로그램 나오면 정의)"
+  },
+  {
+    "code": "ZTD1MM0011",
+    "name": "구매오더 헤더",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "EBELN",
+        "description": "[MM] 참조 PO 번호",
+        "element": "ZED1_MM_EBELN",
+        "domain": "ZDD1_MM_EBELN",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "LIFNR",
+        "description": "[MM] 공급업체 ID",
+        "element": "ZED1_MM_LIFNR",
+        "domain": "ZDD1_MM_LIFNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "WAERS",
+        "description": "[MM] 통화",
+        "element": "ZED1_MM_WAERS",
+        "domain": "ZDD1_MM_WAERS",
+        "type": "CUKY",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "ZTERM",
+        "description": "[FI] 지급조건",
+        "element": "ZED1_FI_ZTERM",
+        "domain": "ZDD1_FI_ZTERM",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "BEDAT",
+        "description": "[MM] 문서 일자",
+        "element": "ZED1_MM_BEDAT",
+        "domain": "ZDD1_MM_BEDAT",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "INCO1",
+        "description": "[MM] 인코텀즈",
+        "element": "ZED1_MM_INCO1",
+        "domain": "ZDD1_MM_INCO1",
+        "type": "CHAR",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "FGGZU",
+        "description": "[MM] 승인상태",
+        "element": "ZED1_MM_FGGZU",
+        "domain": "ZDD1_MM_FGGZU",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "ZDELIVERY_ES",
+        "description": "[MM] 납기 예상일",
+        "element": "ZED1_MM_DELIES",
+        "domain": "ZDD1_MM_DELIES",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "CONTRACT_ID",
+        "description": "[MM] 계약 ID",
+        "element": "ZED1_MM_CONTRACT_ID",
+        "domain": "ZDD1_MM_CONTRACT_ID",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "CONTRACT_TY",
+        "description": "[MM] 거래유형",
+        "element": "ZED1_MM_CONTRACT_TY",
+        "domain": "ZDD1_MM_CONTRACT_TY",
+        "type": "CHAR",
+        "length": 1,
+        "remark": null
+      },
+      {
+        "no": 12,
+        "field": "PLAN_ID",
+        "description": "[MM] 스케줄링 ID",
+        "element": "ZED1_MM_PLANID",
+        "domain": "ZDD1_MM_PLANID",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 13,
+        "field": "UKURS",
+        "description": "[FI] 환율 값",
+        "element": "ZED1_FI_UKURS",
+        "domain": "ZDD1_FI_UKURS",
+        "type": "DEC",
+        "length": 9,
+        "remark": null
+      },
+      {
+        "no": 14,
+        "field": "TCURR",
+        "description": "[FI] Target 통화",
+        "element": "ZED1_FI_TCURR",
+        "domain": "ZDD1_FI_TCURR",
+        "type": "CUKY",
+        "length": 5,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0012",
+    "name": "구매오더 아이템",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "EBELN",
+        "description": "[MM] 참조 PO 번호",
+        "element": "ZED1_MM_EBELN",
+        "domain": "ZDD1_MM_EBELN",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "EBELP",
+        "description": "[MM] 품목번호",
+        "element": "ZED1_MM_EBELP",
+        "domain": "ZDD1_MM_EBELP",
+        "type": "NUMC",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "MATNR",
+        "description": "[MM] 자재번호",
+        "element": "ZED1_MM_MATNR",
+        "domain": "ZDD1_MM_MATNR",
+        "type": "CHAR",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "WERKS",
+        "description": "[PP] 플랜트 ID",
+        "element": "ZED1_PP_WERKS",
+        "domain": "ZDD1_PP_WERKS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "MENGE",
+        "description": "[MM] 수량",
+        "element": "ZED1_MM_MENGE",
+        "domain": "ZDD1_MM_MENGE",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "NETPR",
+        "description": "[MM] 개당 가격",
+        "element": "ZED1_MM_NETPR",
+        "domain": "ZDD1_MM_NETPR",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "PEINH",
+        "description": "[MM] 가격 단위",
+        "element": "ZED1_MM_PEINH",
+        "domain": "ZDD1_MM_PEINH",
+        "type": "DEC",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "MWSKZ",
+        "description": "[FI] 세금코드",
+        "element": "ZED1_FI_MWSKZ",
+        "domain": "ZDD1_FI_MWSKZ",
+        "type": "CHAR",
+        "length": 2,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "BANFN",
+        "description": "[MM] Purchase Requisition",
+        "element": "ZED1_MM_BNFPO",
+        "domain": "ZDD1_MM_BNFPO",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 12,
+        "field": "TAX_PRICE",
+        "description": "[MM] 세금 가격",
+        "element": "ZED1_MM_TAXPRI",
+        "domain": "ZDD1_MM_TAXPRI",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 13,
+        "field": "PURE_PRICE",
+        "description": "[MM] 순금액",
+        "element": "ZED1_MM_PPRI",
+        "domain": "ZDD1_MM_PPRI",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 14,
+        "field": "TOTAL_PRICE",
+        "description": "[MM] 총 금액",
+        "element": "ZED1_MM_TPRI",
+        "domain": "ZDD1_MM_TPRI",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 15,
+        "field": "WAERS",
+        "description": "[MM] 통화",
+        "element": "ZED1_MM_WAERS",
+        "domain": "ZDD1_MM_WAERS",
+        "type": "CUKY",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 16,
+        "field": "LFDAT",
+        "description": "[MM] 요구 납기일",
+        "element": "ZED1_MM_LFDAT",
+        "domain": "ZDD1_MM_LFDAT",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 17,
+        "field": "DSTAT",
+        "description": "[MM] 배송 상태",
+        "element": "ZED1_MM_DSTAT",
+        "domain": "ZDD1_MM_DSTAT",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 18,
+        "field": "CONTRACT_ITEM",
+        "description": "[MM] 계약 품목번호",
+        "element": "ZED1_MM_CITEM",
+        "domain": "ZDD1_MM_CITEM",
+        "type": "NUMC",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 19,
+        "field": "PLAN_MONTH",
+        "description": "[MM] 계획 월",
+        "element": "ZED1_MM_PMONTH",
+        "domain": "ZDD1_MM_PMONTH",
+        "type": "NUMC",
+        "length": 2,
+        "remark": null
+      },
+      {
+        "no": 20,
+        "field": "DEP_DATE",
+        "description": "[MM] 선박 출발일",
+        "element": "ZED1_MM_DEDAT",
+        "domain": "ZDD1_MM_DEDAT",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 21,
+        "field": "ARR_DATE",
+        "description": "[MM] 선박 도착일",
+        "element": "ZED1_MM_ARDAT",
+        "domain": "ZDD1_MM_ARDAT",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0013",
+    "name": "Loss 이력",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "LOSS_ID",
+        "description": "[MM] Loss 번호",
+        "element": "ZED1_MM_LOSS_ID",
+        "domain": "ZDD1_MM_LOSS_ID",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "EBELN",
+        "description": "[MM] 참조 PO 번호",
+        "element": "ZED1_MM_EBELN",
+        "domain": "ZDD1_MM_EBELN",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "MATNR",
+        "description": "[MM] 자재번호",
+        "element": "ZED1_MM_MATNR",
+        "domain": "ZDD1_MM_MATNR",
+        "type": "CHAR",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "CHARG",
+        "description": "[MM] 품질관리 번호",
+        "element": "ZED1_MM_BATCH",
+        "domain": "ZDD1_MM_BATCH",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "MBLNR",
+        "description": "[MM] 자재 문서 번호",
+        "element": "ZED1_MM_MBLNR",
+        "domain": "ZDD1_MM_MBLNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "MJAHR",
+        "description": "[MM] 문서 회계 연도",
+        "element": "ZED1_MM_MJAHR",
+        "domain": "ZDD1_MM_MJAHR",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "LGORT",
+        "description": "[MM] Storage Location",
+        "element": "ZED1_MM_LGORT",
+        "domain": "ZDD1_MM_LGORT",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "LGORT_TO",
+        "description": "[MM] 도착 저장위치",
+        "element": "ZED1_MM_LGORTTO",
+        "domain": "ZDD1_MM_LGORTTO",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "LOSS_QTY",
+        "description": "[MM] Loss 수량",
+        "element": "ZED1_MM_LOSS_QTY",
+        "domain": "ZDD1_MM_LOSS_QTY",
+        "type": "QUAN",
+        "length": 15,
+        "remark": null
+      },
+      {
+        "no": 12,
+        "field": "LOSS_RATE",
+        "description": "[MM] Loss율(%)",
+        "element": "ZED1_MM_LOSS_RATE",
+        "domain": "ZDD1_MM_LOSS_RATE",
+        "type": "DEC",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 13,
+        "field": "ZMEAS_DATE",
+        "description": "[MM] 측정일자",
+        "element": "ZED1_MM_ZMEAS_DATE",
+        "domain": "ZDD1_MM_ZMEAS_DATE",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 14,
+        "field": "LOSS_REASON",
+        "description": "[MM] 손실사유",
+        "element": "ZED1_MM_LOSS_REASON",
+        "domain": "ZDD1_MM_LOSS_REASON",
+        "type": "CHAR",
+        "length": 2,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0014",
+    "name": "자재문서 Header",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "MBLNR",
+        "description": "[MM] 자재 문서 번호",
+        "element": "ZED1_MM_MBLNR",
+        "domain": "ZDD1_MM_MBLNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "MJAHR",
+        "description": "[MM] 문서 회계 연도",
+        "element": "ZED1_MM_MJAHR",
+        "domain": "ZDD1_MM_MJAHR",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "DOC_TYPE",
+        "description": "[MM] 문서유형",
+        "element": "ZED1_MM_DOC_TYPE",
+        "domain": "ZDD1_MM_DOC_TYPE",
+        "type": "CHAR",
+        "length": 2,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "BUKRS",
+        "description": "[CM] 회사코드",
+        "element": "ZED1_CM_BUKRS",
+        "domain": "ZDD1_CM_BUKRS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "BUDAT",
+        "description": "[MM] 전기일",
+        "element": "ZED1_MM_BUDAT",
+        "domain": "ZDD1_MM_BUDAT",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "BLDAT",
+        "description": "[MM] 증빙일",
+        "element": "ZED1_MM_BLDAT",
+        "domain": "ZDD1_MM_BLDAT",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "REF_MBLNR",
+        "description": "[MM] 참조 자재문서번호",
+        "element": "ZED1_MM_REF_MBLNR",
+        "domain": "ZDD1_MM_REF_MBLNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "REF_MJAHR",
+        "description": "[MM] 참조 자재문서연도",
+        "element": "ZED1_MM_REF_MJAHR",
+        "domain": "ZDD1_MM_REF_MJAHR",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "REVAL_TARGET_YN",
+        "description": "[MM] 재평가 대상 여부",
+        "element": "ZED1_MM_REVAL_TARGET_YN",
+        "domain": "ZDD1_MM_REVAL_TARGET_YN",
+        "type": "CHAR",
+        "length": 1,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0015",
+    "name": "자재문서 Item",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "MBLNR",
+        "description": "[MM] 자재 문서 번호",
+        "element": "ZED1_MM_MBLNR",
+        "domain": "ZDD1_MM_MBLNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "MJAHR",
+        "description": "[MM] 문서 회계 연도",
+        "element": "ZED1_MM_MJAHR",
+        "domain": "ZDD1_MM_MJAHR",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "ZEILE",
+        "description": "[MM] 항목번호",
+        "element": "ZED1_MM_ZEILE",
+        "domain": "ZDD1_MM_ZEILE",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "BWART",
+        "description": "[MM] 이동유형",
+        "element": "ZED1_MM_BWART",
+        "domain": "ZDD1_MM_BWART",
+        "type": "CHAR",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "MOVE_CATEGORY",
+        "description": "[MM] 이동 세부구분",
+        "element": "ZED1_MM_MOVE_CATEGORY",
+        "domain": "ZDD1_MM_MOVE_CATEGORY",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "MATNR",
+        "description": "[MM] 자재번호",
+        "element": "ZED1_MM_MATNR",
+        "domain": "ZDD1_MM_MATNR",
+        "type": "CHAR",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "WERKS",
+        "description": "[PP] 플랜트 ID",
+        "element": "ZED1_PP_WERKS",
+        "domain": "ZDD1_PP_WERKS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "LGORT",
+        "description": "[MM] Storage Location",
+        "element": "ZED1_MM_LGORT",
+        "domain": "ZDD1_MM_LGORT",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "CHARG",
+        "description": "[MM] 품질관리 번호",
+        "element": "ZED1_MM_BATCH",
+        "domain": "ZDD1_MM_BATCH",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "SHKZG",
+        "description": "[CM] 차/대변 (Debit/Credit Indicator)",
+        "element": "ZED1_CM_SHKZG",
+        "domain": "ZDD1_CM_SHKZG",
+        "type": "CHAR",
+        "length": 1,
+        "remark": null
+      },
+      {
+        "no": 12,
+        "field": "MENGE",
+        "description": "[MM] 수량",
+        "element": "ZED1_MM_MENGE",
+        "domain": "ZDD1_MM_MENGE",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 13,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 14,
+        "field": "WRBTR",
+        "description": "[MM] 금액",
+        "element": "ZED1_MM_WRBTR",
+        "domain": "ZDD1_MM_WRBTR",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 15,
+        "field": "WAERS",
+        "description": "[MM] 통화",
+        "element": "ZED1_MM_WAERS",
+        "domain": "ZDD1_MM_WAERS",
+        "type": "CUKY",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 16,
+        "field": "REVAL_TARGET_YN",
+        "description": "[MM] 재평가 대상 여부",
+        "element": "ZED1_MM_REVAL_TARGET_YN",
+        "domain": "ZDD1_MM_REVAL_TARGET_YN",
+        "type": "CHAR",
+        "length": 1,
+        "remark": null
+      },
+      {
+        "no": 17,
+        "field": "REVAL_MBLNR",
+        "description": "[MM] 재평가 자재문서번호",
+        "element": "ZED1_MM_REVAL_MBLNR",
+        "domain": "ZDD1_MM_REVAL_MBLNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 18,
+        "field": "REVAL_MJAHR",
+        "description": "[MM] 재평가 자재문서연도",
+        "element": "ZED1_MM_REVAL_MJAHR",
+        "domain": "ZDD1_MM_REVAL_MJAHR",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 19,
+        "field": "REVAL_ZEILE",
+        "description": "[MM] 재평가 자재문서 항목",
+        "element": "ZED1_MM_REVAL_ZEILE",
+        "domain": "ZDD1_MM_REVAL_ZEILE",
+        "type": "NUMC",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 20,
+        "field": "REF_MBLNR",
+        "description": "[MM] 참조 자재문서번호",
+        "element": "ZED1_MM_REF_MBLNR",
+        "domain": "ZDD1_MM_REF_MBLNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 21,
+        "field": "REF_MJAHR",
+        "description": "[MM] 참조 자재문서연도",
+        "element": "ZED1_MM_REF_MJAHR",
+        "domain": "ZDD1_MM_REF_MJAHR",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 22,
+        "field": "REF_ZEILE",
+        "description": "[MM] 참조 자재문서 항목",
+        "element": "ZED1_MM_REF_ZEILE",
+        "domain": "ZDD1_MM_REF_ZEILE",
+        "type": "NUMC",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 23,
+        "field": "EBELN",
+        "description": "[MM] 참조 PO 번호",
+        "element": "ZED1_MM_EBELN",
+        "domain": "ZDD1_MM_EBELN",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 24,
+        "field": "EBELP",
+        "description": "[MM] 품목번호",
+        "element": "ZED1_MM_EBELP",
+        "domain": "ZDD1_MM_EBELP",
+        "type": "NUMC",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 25,
+        "field": "GICOD",
+        "description": "[SD] 출고오더ID",
+        "element": "ZED1_SD_GICOD",
+        "domain": "ZDD1_SD_GICOD",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 26,
+        "field": "POSNR_D",
+        "description": "[SD] 출고오더 품목번호",
+        "element": "ZED1_SD_POSNRD",
+        "domain": "ZDD1_SD_POSNRD",
+        "type": "NUMC",
+        "length": 6,
+        "remark": null
+      },
+      {
+        "no": 27,
+        "field": "ORDER_NO",
+        "description": "[PP] 오더번호",
+        "element": "ZED1_PP_ORDNO",
+        "domain": "ZDD1_PP_ORDNO",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 28,
+        "field": "CONF_NO",
+        "description": "[PP] 확인번호",
+        "element": "ZED1_PP_CONFNO",
+        "domain": "ZDD1_PP_CONFNO",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0016",
+    "name": "구매정보레코드",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "PIR_ID",
+        "description": "[MM] 구매정보레코드 ID",
+        "element": "ZED1_MM_PIRID",
+        "domain": "ZDD1_MM_PIRID",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "LIFNR",
+        "description": "[MM] 공급업체 ID",
+        "element": "ZED1_MM_LIFNR",
+        "domain": "ZDD1_MM_LIFNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "MATNR",
+        "description": "[MM] 자재번호",
+        "element": "ZED1_MM_MATNR",
+        "domain": "ZDD1_MM_MATNR",
+        "type": "CHAR",
+        "length": 5,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0017",
+    "name": "구매정보레코드 조건 테이블",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "PIR_ID",
+        "description": "[MM] 구매정보레코드 ID",
+        "element": "ZED1_MM_PIRID",
+        "domain": "ZDD1_MM_PIRID",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "CONDITION_ID",
+        "description": "[MM] 컨디션 ID",
+        "element": "ZED1_MM_CONID",
+        "domain": "ZDD1_MM_CONID",
+        "type": "NUMC",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "WERKS",
+        "description": "[PP] 플랜트 ID",
+        "element": "ZED1_PP_WERKS",
+        "domain": "ZDD1_PP_WERKS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "VALID_FROM",
+        "description": "[MM] 유효시작일",
+        "element": "ZED1_MM_VAFR",
+        "domain": "ZDD1_MM_VAFR",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "VALID_TO",
+        "description": "[MM] 유효종료일",
+        "element": "ZED1_MM_VATO",
+        "domain": "ZDD1_MM_VATO",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "INCO1",
+        "description": "[MM] 인코텀즈",
+        "element": "ZED1_MM_INCO1",
+        "domain": "ZDD1_MM_INCO1",
+        "type": "CHAR",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "QUANTITY",
+        "description": "[MM] 연 공급 수량",
+        "element": "ZED1_MM_QUANP",
+        "domain": "ZDD1_MM_QUANP",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "PRICE",
+        "description": "[MM] 금액",
+        "element": "ZED1_MM_PRICE",
+        "domain": "ZDD1_MM_PRICE",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "WAERS",
+        "description": "[MM] 통화",
+        "element": "ZED1_MM_WAERS",
+        "domain": "ZDD1_MM_WAERS",
+        "type": "CUKY",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 12,
+        "field": "PLIFZ",
+        "description": "[MM] 리드타임",
+        "element": "ZED1_MM_PLIFZ",
+        "domain": "ZDD1_MM_PLIFZ",
+        "type": "DEC",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 13,
+        "field": "MIN_ORD",
+        "description": "[MM] 최소 주문 수량",
+        "element": "ZED1_MM_MQTY",
+        "domain": "ZDD1_MM_MQTY",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 14,
+        "field": "TRANS_TYPE",
+        "description": "[MM] 운송방식",
+        "element": "ZED1_MM_TRANS_TYPE",
+        "domain": "ZDD1_MM_TRANS_TYPE",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0018",
+    "name": "품질관리",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "MATNR",
+        "description": "[MM] 자재번호",
+        "element": "ZED1_MM_MATNR",
+        "domain": "ZDD1_MM_MATNR",
+        "type": "CHAR",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "WERKS",
+        "description": "[PP] 플랜트 ID",
+        "element": "ZED1_PP_WERKS",
+        "domain": "ZDD1_PP_WERKS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "BATCH_ID",
+        "description": "[MM] 품질관리 번호",
+        "element": "ZED1_MM_BATCH",
+        "domain": "ZDD1_MM_BATCH",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "ACT_API",
+        "description": "[MM] API GRAVITY",
+        "element": "ZED1_MM_API_G",
+        "domain": "ZDD1_MM_API_G",
+        "type": "DEC",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "ACT_SULF",
+        "description": "[MM] Sulfur Content",
+        "element": "ZED1_MM_SULF_C",
+        "domain": "ZDD1_MM_SULF_C",
+        "type": "DEC",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "ACT_FLSH",
+        "description": "[PP] 인화점",
+        "element": "ZED1_PP_FLASH",
+        "domain": "ZDD1_PP_FLASH",
+        "type": "QUAN",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "ACT_OCTN",
+        "description": "[PP] 옥탄가",
+        "element": "ZED1_PP_OCTN",
+        "domain": "ZDD1_PP_OCTN",
+        "type": "QUAN",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "ACT_CETN",
+        "description": "[PP] 세탄가",
+        "element": "ZED1_PP_CETN",
+        "domain": "ZDD1_PP_CETN",
+        "type": "QUAN",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "ACT_VISC",
+        "description": "[PP] 동점도",
+        "element": "ZED1_PP_VISC",
+        "domain": "ZDD1_PP_VISC",
+        "type": "QUAN",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "ACT_PURITY",
+        "description": "[PP] 순도",
+        "element": "ZED1_PP_PURITY",
+        "domain": "ZDD1_PP_PURITY",
+        "type": "QUAN",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 12,
+        "field": "ACT_MOIST",
+        "description": "[PP] 수분",
+        "element": "ZED1_PP_MOIST",
+        "domain": "ZDD1_PP_MOIST",
+        "type": "QUAN",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 13,
+        "field": "BATCH_DATE",
+        "description": "[MM] 품질검사 날짜",
+        "element": "ZED1_MM_BDATE",
+        "domain": "ZDD1_MM_BDATE",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 14,
+        "field": "BATCH_STATUS",
+        "description": "[MM] 품질 상태",
+        "element": "ZED1_MM_BSTAT",
+        "domain": "ZDD1_MM_BSTAT",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 15,
+        "field": "SOURCE_TYPE",
+        "description": "[MM] 품질 프로세스 유형",
+        "element": "ZED1_MM_STYPE",
+        "domain": "ZDD1_MM_STYPE",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 16,
+        "field": "LAST_BATCH_ID",
+        "description": "[MM] 품질관리 번호",
+        "element": "ZED1_MM_BATCH",
+        "domain": "ZDD1_MM_BATCH",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 17,
+        "field": "PO_NUM",
+        "description": "[MM] 참조 PO 번호",
+        "element": "ZED1_MM_EBELN",
+        "domain": "ZDD1_MM_EBELN",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 18,
+        "field": "PP_NUM",
+        "description": "[PP] 오더번호",
+        "element": "ZED1_PP_ORDNO",
+        "domain": "ZDD1_PP_ORDNO",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0023",
+    "name": "탱크 넘버링 분류 및 노드 구성",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "NODE_ID",
+        "description": "[CM] 노드코드",
+        "element": "ZED1_CM_NODEID",
+        "domain": "ZDD1_CM_NODEID",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "TANKT",
+        "description": "[MM] 탱크 분류",
+        "element": "ZED1_MM_TANKT",
+        "domain": "ZDD1_MM_TANKT",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "TANKT_TEXT",
+        "description": "[MM] 탱크 분류 설명",
+        "element": "ZED1_MM_TANKTXT",
+        "domain": "ZDD1_MM_TANKTXT",
+        "type": "CHAR",
+        "length": 30,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "TANK_MIN",
+        "description": "[MM] 탱크 분류 별 시작 넘버링",
+        "element": "ZED1_MM_TANKMIN",
+        "domain": "ZDD1_MM_TANKMIN",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "TANK_MAX",
+        "description": "[MM] 탱크 분류 별 종료 번호",
+        "element": "ZED1_MM_TANKMAX",
+        "domain": "ZDD1_MM_TANKMAX",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "MTART",
+        "description": "[MM] 자재유형",
+        "element": "ZED1_MM_MTART",
+        "domain": "ZDD1_MM_MTART",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0024",
+    "name": "탱크 분류 별 상태 관리",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "NODE_ID",
+        "description": "[CM] 노드코드",
+        "element": "ZED1_CM_NODEID",
+        "domain": "ZDD1_CM_NODEID",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "TANKT",
+        "description": "[MM] 탱크 분류",
+        "element": "ZED1_MM_TANKT",
+        "domain": "ZDD1_MM_TANKT",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "STAT_CODE",
+        "description": "[MM] 탱크 분류 별 상태 코드",
+        "element": "ZED1_MM_STATC",
+        "domain": "ZDD1_MM_STATC",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "STAT_TEXT",
+        "description": "[MM] 탱크 분류 별 상태 설명",
+        "element": "ZED1_MM_STATXT",
+        "domain": "ZDD1_MM_STATXT",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0025",
+    "name": "자재에 대한 플랜트 데이터",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "WERKS",
+        "description": "[PP] 플랜트 ID",
+        "element": "ZED1_PP_WERKS",
+        "domain": "ZDD1_PP_WERKS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "MATNR",
+        "description": "[MM] 자재번호",
+        "element": "ZED1_MM_MATNR",
+        "domain": "ZDD1_MM_MATNR",
+        "type": "CHAR",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "MINBE",
+        "description": "[MM] 재주문점",
+        "element": "ZED1_MM_MINBE",
+        "domain": "ZDD1_MM_MINBE",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "MABST",
+        "description": "[MM] 최대 재고",
+        "element": "ZED1_MM_MABST",
+        "domain": "ZDD1_MM_MABST",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "EISBE",
+        "description": "[MM] 안전재고",
+        "element": "ZED1_MM_EISBE",
+        "domain": "ZDD1_MM_EISBE",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "PROCB",
+        "description": "[MM] 발주 금지",
+        "element": "ZED1_MM_PROCB",
+        "domain": "ZDD1_MM_PROCB",
+        "type": "CHAR",
+        "length": 1,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "PLIFZ",
+        "description": "[MM] 리드타임",
+        "element": "ZED1_MM_PLIFZ",
+        "domain": "ZDD1_MM_PLIFZ",
+        "type": "DEC",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0026",
+    "name": "스케줄링 헤더 (연간 구매계획)",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "WERKS",
+        "description": "[PP] 플랜트 ID",
+        "element": "ZED1_PP_WERKS",
+        "domain": "ZDD1_PP_WERKS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "PLAN_ID",
+        "description": "[MM] 스케줄링 ID",
+        "element": "ZED1_MM_PLANID",
+        "domain": "ZDD1_MM_PLANID",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "PLAN_YEAR",
+        "description": "[MM] 계획 연도",
+        "element": "ZED1_MM_PYEAR",
+        "domain": "ZDD1_MM_PYEAR",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "START_DATE",
+        "description": "[MM] 시작일자",
+        "element": "ZED1_MM_SDATE",
+        "domain": "ZDD1_MM_SDATE",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "END_DATE",
+        "description": "[MM] 종료 일자",
+        "element": "ZED1_MM_EDATE",
+        "domain": "ZDD1_MM_EDATE",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "TOTAL_PLAN_QTY",
+        "description": "[MM] 총 계획 유량",
+        "element": "ZED1_MM_TPQTY",
+        "domain": "ZDD1_MM_TPQTY",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "PLAN_TEXT",
+        "description": "[MM] 계획 설명",
+        "element": "ZED1_MM_PTEXT",
+        "domain": "ZDD1_MM_PTEXT",
+        "type": "CHAR",
+        "length": 30,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0027",
+    "name": "스케줄링 아이템 (계획 라인)",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "WERKS",
+        "description": "[PP] 플랜트 ID",
+        "element": "ZED1_PP_WERKS",
+        "domain": "ZDD1_PP_WERKS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "PLAN_ID",
+        "description": "[MM] 스케줄링 ID",
+        "element": "ZED1_MM_PLANID",
+        "domain": "ZDD1_MM_PLANID",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "PLAN_MONTH",
+        "description": "[MM] 계획 월",
+        "element": "ZED1_MM_PMONTH",
+        "domain": "ZDD1_MM_PMONTH",
+        "type": "NUMC",
+        "length": 2,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "MATNR",
+        "description": "[MM] 자재번호",
+        "element": "ZED1_MM_MATNR",
+        "domain": "ZDD1_MM_MATNR",
+        "type": "CHAR",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "PLAN_QTY",
+        "description": "[MM] 계획 수량",
+        "element": "ZED1_MM_PQTY",
+        "domain": "ZDD1_MM_PQTY",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "PLAN_TEXT",
+        "description": "[MM] 계획 설명",
+        "element": "ZED1_MM_PTEXT",
+        "domain": "ZDD1_MM_PTEXT",
+        "type": "CHAR",
+        "length": 30,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0028",
+    "name": "인코텀즈 정의 테이블",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "INCO1",
+        "description": "[MM] 인코텀즈",
+        "element": "ZED1_MM_INCO1",
+        "domain": "ZDD1_MM_INCO1",
+        "type": "CHAR",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "INCO_INFO",
+        "description": "[MM] 인코텀즈 설명",
+        "element": "ZED1_MM_INCO_INFO",
+        "domain": "ZDD1_MM_INCO_INFO",
+        "type": "CHAR",
+        "length": 30,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0029",
+    "name": "승인상태 정의 테이블",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "FGGZU",
+        "description": "[MM] 승인상태",
+        "element": "ZED1_MM_FGGZU",
+        "domain": "ZDD1_MM_FGGZU",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "FGGZU_INFO",
+        "description": "[MM] 승인상태 설명",
+        "element": "ZED1_MM_FGGZU_INFO",
+        "domain": "ZDD1_MM_FGGZU_INFO",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0033",
+    "name": "결재 처리 테이블",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "APV_NO",
+        "description": "[FI] 결재 번호",
+        "element": "ZED1_FI_PAYNO",
+        "domain": "ZDD1_FI_PAYNO",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "EBELN",
+        "description": "[MM] 참조 PO 번호",
+        "element": "ZED1_MM_EBELN",
+        "domain": "ZDD1_MM_EBELN",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "FGGZU",
+        "description": "[MM] 승인상태",
+        "element": "ZED1_MM_FGGZU",
+        "domain": "ZDD1_MM_FGGZU",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "REQ_ID",
+        "description": "[FI] 상신자 ID",
+        "element": "ZED1_FI_REQ_ID",
+        "domain": "ZDD1_FI_REQ_ID",
+        "type": "CHAR",
+        "length": 12,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "REQ_DATE",
+        "description": "[FI] 상신일",
+        "element": "ZED1_FI_REQ_DATE",
+        "domain": "ZDD1_FI_REQ_DATE",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "APPR_ID_1",
+        "description": "[MM] 1차 결재자",
+        "element": "ZED1_MM_APPR_ID_1",
+        "domain": "ZDD1_MM_APPR_ID_1",
+        "type": "CHAR",
+        "length": 12,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "APPR_ID_2",
+        "description": "[MM] 2차 결재자",
+        "element": "ZED1_MM_APPR_ID_2",
+        "domain": "ZDD1_MM_APPR_ID_2",
+        "type": "CHAR",
+        "length": 12,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "APPR_DATE_1",
+        "description": "[MM] 1차 결재 일자",
+        "element": "ZED1_MM_APPR_DATE_1",
+        "domain": "ZDD1_MM_APPR_DATE_1",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "APPR_DATE_2",
+        "description": "[MM] 2차 결재 일자",
+        "element": "ZED1_MM_APPR_DATE_2",
+        "domain": "ZDD1_MM_APPR_DATE_2",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "NOTE",
+        "description": "[MM] 비고",
+        "element": "ZED1_MM_BIGO",
+        "domain": "ZDD1_MM_BIGO",
+        "type": "CHAR",
+        "length": 255,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0034",
+    "name": "원유 ROP 관리",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "MATNR",
+        "description": "[MM] 자재번호",
+        "element": "ZED1_MM_MATNR",
+        "domain": "ZDD1_MM_MATNR",
+        "type": "CHAR",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "WERKS",
+        "description": "[PP] 플랜트 ID",
+        "element": "ZED1_PP_WERKS",
+        "domain": "ZDD1_PP_WERKS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "ROP_QTY",
+        "description": "[MM] 재주문점",
+        "element": "ZED1_MM_ROP_QTY",
+        "domain": "ZDD1_MM_ROP_QTY",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "SAFE_QTY",
+        "description": "[MM] 안전재고",
+        "element": "ZED1_MM_SAFE_QTY",
+        "domain": "ZDD1_MM_SAFE_QTY",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "MAX_QTY",
+        "description": "[MM] 최대재고",
+        "element": "ZED1_MM_MAX_QTY",
+        "domain": "ZDD1_MM_MAX_QTY",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "LOT_QTY",
+        "description": "[MM] 최소주문단위",
+        "element": "ZED1_MM_LOT_QTY",
+        "domain": "ZDD1_MM_LOT_QTY",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "LEADTIME",
+        "description": "[MM] 리드타임",
+        "element": "ZED1_MM_LEADTIME",
+        "domain": "ZDD1_MM_LEADTIME",
+        "type": "NUMC",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "USE_YN",
+        "description": "[MM] 사용여부",
+        "element": "ZED1_MM_USE_YN",
+        "domain": "ZDD1_MM_USE_YN",
+        "type": "CHAR",
+        "length": 1,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0035",
+    "name": "ROP 로그",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "EXEC_DATE",
+        "description": "[MM] 배치잡 실행일자",
+        "element": "ZED1_MM_EXEC_DATE",
+        "domain": "ZDD1_MM_EXEC_DATE",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "MATNR",
+        "description": "[MM] 자재번호",
+        "element": "ZED1_MM_MATNR",
+        "domain": "ZDD1_MM_MATNR",
+        "type": "CHAR",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "WERKS",
+        "description": "[PP] 플랜트 ID",
+        "element": "ZED1_PP_WERKS",
+        "domain": "ZDD1_PP_WERKS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "QTY_STOCK",
+        "description": "[MM] 현재 합산 실재고",
+        "element": "ZED1_MM_QTY_STOCK",
+        "domain": "ZDD1_MM_QTY_STOCK",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "QTY_PR",
+        "description": "[MM] 미결 PR 잔량",
+        "element": "ZED1_MM_QTY_PR",
+        "domain": "ZDD1_MM_QTY_PR",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "QTY_PO",
+        "description": "[MM] 미결 PO 잔량",
+        "element": "ZED1_MM_QTY_PO",
+        "domain": "ZDD1_MM_QTY_PO",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "QTY_AVAIL",
+        "description": "[MM] 유효재고",
+        "element": "ZED1_MM_QTY_AVAIL",
+        "domain": "ZDD1_MM_QTY_AVAIL",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "ROP_QTY",
+        "description": "[MM] 재주문점",
+        "element": "ZED1_MM_ROP_QTY",
+        "domain": "ZDD1_MM_ROP_QTY",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "PR_QTY",
+        "description": "[MM] PR 발주수량",
+        "element": "ZED1_MM_PR_QTY",
+        "domain": "ZDD1_MM_PR_QTY",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "PR_NUM",
+        "description": "[MM] Purchase Requisition",
+        "element": "ZED1_MM_BNFPO",
+        "domain": "ZDD1_MM_BNFPO",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 12,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0036",
+    "name": "월별 유가 집계",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "YEARAT",
+        "description": "[MM] 유가 집계 연도",
+        "element": "ZED1_MM_YEARAT",
+        "domain": "ZDD1_MM_YEARAT",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "MONAT",
+        "description": "[MM] 유가 집계 월",
+        "element": "ZED1_MM_MONAT",
+        "domain": "ZDD1_MM_MONAT",
+        "type": "NUMC",
+        "length": 2,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "OILCODE",
+        "description": "[MM] 유가 조회 코드",
+        "element": "ZED1_MM_OILCODE",
+        "domain": "ZDD1_MM_OILCODE",
+        "type": "CHAR",
+        "length": 30,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "PRICE",
+        "description": "[MM] 금액",
+        "element": "ZED1_MM_PRICE",
+        "domain": "ZDD1_MM_PRICE",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "WAERS",
+        "description": "[MM] 통화",
+        "element": "ZED1_MM_WAERS",
+        "domain": "ZDD1_MM_WAERS",
+        "type": "CUKY",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0037",
+    "name": "송장 검증 헤더",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "INV_NO",
+        "description": "[MM] 송장 전표 번호",
+        "element": "ZED1_MM_INVNO",
+        "domain": "ZDD1_MM_INVNO",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "GJAHR",
+        "description": "[FI] 회계 연도",
+        "element": "ZED1_FI_GJAHR",
+        "domain": "ZDD1_FI_GJAHR",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "BUDAT",
+        "description": "[FI] 전기일",
+        "element": "ZED1_FI_BUDAT",
+        "domain": "ZDD1_FI_BUDAT",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "BLDAT",
+        "description": "[MM] 증빙일",
+        "element": "ZED1_MM_BLDAT",
+        "domain": "ZDD1_MM_BLDAT",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "BUKRS",
+        "description": "[CM] 회사코드",
+        "element": "ZED1_CM_BUKRS",
+        "domain": "ZDD1_CM_BUKRS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "LIFNR",
+        "description": "[MM] 공급업체 ID",
+        "element": "ZED1_MM_LIFNR",
+        "domain": "ZDD1_MM_LIFNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "WAERS",
+        "description": "[MM] 통화",
+        "element": "ZED1_MM_WAERS",
+        "domain": "ZDD1_MM_WAERS",
+        "type": "CUKY",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "ZWAERS",
+        "description": "[FI] 로컬금액 통화",
+        "element": "ZED1_FI_ZWAERS",
+        "domain": "ZDD1_FI_ZWAERS",
+        "type": "CUKY",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "ZLSPR",
+        "description": "[MM] 송장 승인/반려 여부",
+        "element": "ZED1_MM_ZLSPR",
+        "domain": "ZDD1_MM_ZLSPR",
+        "type": "CHAR",
+        "length": 1,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "ZTERM",
+        "description": "[FI] 지급조건",
+        "element": "ZED1_FI_ZTERM",
+        "domain": "ZDD1_FI_ZTERM",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 12,
+        "field": "INV_DAT",
+        "description": "[MM] 공급업체 청구일",
+        "element": "ZED1_MM_INVDAT",
+        "domain": "ZDD1_MM_INVDAT",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0038",
+    "name": "송장 검증 아이템",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "INV_NO",
+        "description": "[MM] 송장 전표 번호",
+        "element": "ZED1_MM_INVNO",
+        "domain": "ZDD1_MM_INVNO",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "INV_ITEM",
+        "description": "[MM] 송장 아이템 번호",
+        "element": "ZED1_MM_EBELPI",
+        "domain": "ZDD1_MM_EBELPI",
+        "type": "NUMC",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "EBELN",
+        "description": "[MM] 참조 PO 번호",
+        "element": "ZED1_MM_EBELN",
+        "domain": "ZDD1_MM_EBELN",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "MBLNR",
+        "description": "[MM] 자재 문서 번호",
+        "element": "ZED1_MM_MBLNR",
+        "domain": "ZDD1_MM_MBLNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "MJAHR",
+        "description": "[MM] 문서 회계 연도",
+        "element": "ZED1_MM_MJAHR",
+        "domain": "ZDD1_MM_MJAHR",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "MATNR",
+        "description": "[MM] 자재번호",
+        "element": "ZED1_MM_MATNR",
+        "domain": "ZDD1_MM_MATNR",
+        "type": "CHAR",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "GR_MENGE",
+        "description": "[MM] 실입고수량",
+        "element": "ZED1_MM_GRMENGE",
+        "domain": "ZDD1_MM_GRMENGE",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "IR_MENGE",
+        "description": "[MM] 청구서 수량",
+        "element": "ZED1_MM_IRMENGE",
+        "domain": "ZDD1_MM_IRMENGE",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "DIFF_QTY",
+        "description": "[MM] 수량 차이",
+        "element": "ZED1_MM_ERFMGD",
+        "domain": "ZDD1_MM_ERFMGD",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 12,
+        "field": "ITEM_AMT",
+        "description": "[MM] 청구 금액",
+        "element": "ZED1_MM_ITEM_AMT",
+        "domain": "ZDD1_MM_ITEM_AMT",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 13,
+        "field": "ITEM_AMT_D",
+        "description": "[MM] 청구 금액(로컬)",
+        "element": "ZED1_MM_ITEM_AMT_D",
+        "domain": "ZDD1_MM_ITEM_AMT_D",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 14,
+        "field": "BASE_AMT",
+        "description": "[MM] 송장 검증 기준금액",
+        "element": "ZED1_MM_BASE_AMT",
+        "domain": "ZDD1_MM_BASE_AMT",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 15,
+        "field": "BASE_AMT_D",
+        "description": "[MM] 송장 검증 기준금액 (로컬)",
+        "element": "ZED1_MM_BASE_AMT_D",
+        "domain": "ZDD1_MM_BASE_AMT_D",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 16,
+        "field": "HWSTE",
+        "description": "[MM] 세금 합계액(로컬)",
+        "element": "ZED1_MM_HWSTE",
+        "domain": "ZDD1_MM_HWSTE",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 17,
+        "field": "WMWST",
+        "description": "[MM] 세금 합계액(외화)",
+        "element": "ZED1_MM_WMWST",
+        "domain": "ZDD1_MM_WMWST",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 18,
+        "field": "DIFF_AMT",
+        "description": "[MM] 금액 차이",
+        "element": "ZED1_MM_WRBTRD",
+        "domain": "ZDD1_MM_WRBTRD",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 19,
+        "field": "DIFF_AMT_D",
+        "description": "[MM] 금액 차이(로컬)",
+        "element": "ZED1_MM_WRBTR_D",
+        "domain": "ZDD1_MM_WRBTR_D",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 20,
+        "field": "OILPRICE",
+        "description": "[MM] 유가 단가",
+        "element": "ZED1_MM_OILPRICE",
+        "domain": "ZDD1_MM_OILPRICE",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 21,
+        "field": "PREMIUM",
+        "description": "[MM] OSP Premium 금액",
+        "element": "ZED1_MM_PREMIUM",
+        "domain": "ZDD1_MM_PREMIUM",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 22,
+        "field": "WAERS",
+        "description": "[CM] 통화코드",
+        "element": "ZED1_CM_WAERS",
+        "domain": "ZDD1_CM_WAERS",
+        "type": "CUKY",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 23,
+        "field": "ZWAERS",
+        "description": "[FI] 로컬금액 통화",
+        "element": "ZED1_FI_ZWAERS",
+        "domain": "ZDD1_FI_ZWAERS",
+        "type": "CUKY",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 24,
+        "field": "MWSKZ",
+        "description": "[FI] 세금코드",
+        "element": "ZED1_FI_MWSKZ",
+        "domain": "ZDD1_FI_MWSKZ",
+        "type": "CHAR",
+        "length": 2,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0039",
+    "name": "내부이동 GO-TR 참조 매핑 테이블",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "LINK_ID",
+        "description": "[MM] 내부이동 매핑 ID",
+        "element": "ZED1_MM_LINK_ID",
+        "domain": "ZDD1_MM_LINK_ID",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "BUKRS",
+        "description": "[CM] 회사코드",
+        "element": "ZED1_CM_BUKRS",
+        "domain": "ZDD1_CM_BUKRS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "WERKS",
+        "description": "[PP] 플랜트 ID",
+        "element": "ZED1_PP_WERKS",
+        "domain": "ZDD1_PP_WERKS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "MATNR",
+        "description": "[MM] 자재번호",
+        "element": "ZED1_MM_MATNR",
+        "domain": "ZDD1_MM_MATNR",
+        "type": "CHAR",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "CHARG",
+        "description": "[MM] 배치번호",
+        "element": "ZED1_MM_CHARG",
+        "domain": "ZDD1_MM_CHARG",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "LGORT_FROM",
+        "description": "[MM] Storage Location",
+        "element": "ZED1_MM_LGORT",
+        "domain": "ZDD1_MM_LGORT",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "LGORT_TO",
+        "description": "[MM] Storage Location",
+        "element": "ZED1_MM_LGORT",
+        "domain": "ZDD1_MM_LGORT",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "GO_MBLNR",
+        "description": "[MM] 자재 문서 번호",
+        "element": "ZED1_MM_MBLNR",
+        "domain": "ZDD1_MM_MBLNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "GO_MJAHR",
+        "description": "[MM] 문서 회계 연도",
+        "element": "ZED1_MM_MJAHR",
+        "domain": "ZDD1_MM_MJAHR",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "GO_ZEILE",
+        "description": "[MM] 항목번호",
+        "element": "ZED1_MM_ZEILE",
+        "domain": "ZDD1_MM_ZEILE",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 12,
+        "field": "TR_MBLNR",
+        "description": "[MM] 자재 문서 번호",
+        "element": "ZED1_MM_MBLNR",
+        "domain": "ZDD1_MM_MBLNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 13,
+        "field": "TR_MJAHR",
+        "description": "[MM] 문서 회계 연도",
+        "element": "ZED1_MM_MJAHR",
+        "domain": "ZDD1_MM_MJAHR",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 14,
+        "field": "TR_ZEILE",
+        "description": "[MM] 항목번호",
+        "element": "ZED1_MM_ZEILE",
+        "domain": "ZDD1_MM_ZEILE",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 15,
+        "field": "LOSS_ZEILE",
+        "description": "[MM] 항목번호",
+        "element": "ZED1_MM_ZEILE",
+        "domain": "ZDD1_MM_ZEILE",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 16,
+        "field": "LOSS_ID",
+        "description": "[MM] Loss 번호",
+        "element": "ZED1_MM_LOSS_ID",
+        "domain": "ZDD1_MM_LOSS_ID",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 17,
+        "field": "MOVE_QTY",
+        "description": "[MM] 수량",
+        "element": "ZED1_MM_MENGE",
+        "domain": "ZDD1_MM_MENGE",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 18,
+        "field": "RECV_QTY",
+        "description": "[MM] 수량",
+        "element": "ZED1_MM_MENGE",
+        "domain": "ZDD1_MM_MENGE",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 19,
+        "field": "LOSS_QTY",
+        "description": "[MM] 수량",
+        "element": "ZED1_MM_MENGE",
+        "domain": "ZDD1_MM_MENGE",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 20,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 21,
+        "field": "MOVE_AMT",
+        "description": "[MM] 금액",
+        "element": "ZED1_MM_WRBTR",
+        "domain": "ZDD1_MM_WRBTR",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 22,
+        "field": "RECV_AMT",
+        "description": "[MM] 금액",
+        "element": "ZED1_MM_WRBTR",
+        "domain": "ZDD1_MM_WRBTR",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 23,
+        "field": "LOSS_AMT",
+        "description": "[MM] 금액",
+        "element": "ZED1_MM_WRBTR",
+        "domain": "ZDD1_MM_WRBTR",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 24,
+        "field": "WAERS",
+        "description": "[MM] 통화",
+        "element": "ZED1_MM_WAERS",
+        "domain": "ZDD1_MM_WAERS",
+        "type": "CUKY",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 25,
+        "field": "STATUS",
+        "description": "[MM] 매핑상태",
+        "element": "ZED1_MM_LINK_STATUS",
+        "domain": "ZDD1_MM_LINK_STATUS",
+        "type": "CHAR",
+        "length": 1,
+        "remark": null
+      },
+      {
+        "no": 26,
+        "field": "GO_DATE",
+        "description": "[MM] 전기일",
+        "element": "ZED1_MM_BUDAT",
+        "domain": "ZDD1_MM_BUDAT",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 27,
+        "field": "TR_DATE",
+        "description": "[MM] 전기일",
+        "element": "ZED1_MM_BUDAT",
+        "domain": "ZDD1_MM_BUDAT",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0040",
+    "name": "청구서 헤더",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "INV_NO",
+        "description": "[MM] 송장 전표 번호",
+        "element": "ZED1_MM_INVNO",
+        "domain": "ZDD1_MM_INVNO",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "INV_DAT",
+        "description": "[MM] 공급업체 청구일",
+        "element": "ZED1_MM_INVDAT",
+        "domain": "ZDD1_MM_INVDAT",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "LIFNR",
+        "description": "[MM] 공급업체 ID",
+        "element": "ZED1_MM_LIFNR",
+        "domain": "ZDD1_MM_LIFNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "NAME1",
+        "description": "[MM] 공급업체명",
+        "element": "ZED1_MM_VENDNME",
+        "domain": "ZDD1_MM_VENDNME",
+        "type": "CHAR",
+        "length": 40,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "ZTERM",
+        "description": "[FI] 지급조건",
+        "element": "ZED1_FI_ZTERM",
+        "domain": "ZDD1_FI_ZTERM",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "WAERS",
+        "description": "[MM] 통화",
+        "element": "ZED1_MM_WAERS",
+        "domain": "ZDD1_MM_WAERS",
+        "type": "CUKY",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "MWSKZ",
+        "description": "[FI] 세금코드",
+        "element": "ZED1_FI_MWSKZ",
+        "domain": "ZDD1_FI_MWSKZ",
+        "type": "CHAR",
+        "length": 2,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "EBELN",
+        "description": "[MM] 참조 PO 번호",
+        "element": "ZED1_MM_EBELN",
+        "domain": "ZDD1_MM_EBELN",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "TOTAL_QTY",
+        "description": "[MM] 총 입고 수량",
+        "element": "ZED1_MM_TOTAL_QTY",
+        "domain": "ZDD1_MM_TOTAL_QTY",
+        "type": "QUAN",
+        "length": 15,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 12,
+        "field": "TOTAL_AMT",
+        "description": "[MM] 송장 청구 총금액",
+        "element": "ZED1_MM_INVAMT",
+        "domain": "ZDD1_MM_INVAMT",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 13,
+        "field": "WMWST",
+        "description": "[MM] 세금 합계액(외화)",
+        "element": "ZED1_MM_WMWST",
+        "domain": "ZDD1_MM_WMWST",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 14,
+        "field": "IV_ZLSPR",
+        "description": "[MM] 내부 송장 생성 상태",
+        "element": "ZED1_MM_IV_ZLSPR",
+        "domain": "ZDD1_MM_IV_ZLSPR",
+        "type": "CHAR",
+        "length": 1,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0041",
+    "name": "청구서 아이템",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "INV_NO",
+        "description": "[MM] 송장 전표 번호",
+        "element": "ZED1_MM_INVNO",
+        "domain": "ZDD1_MM_INVNO",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "INV_ITEM",
+        "description": "[MM] 송장 아이템 번호",
+        "element": "ZED1_MM_EBELPI",
+        "domain": "ZDD1_MM_EBELPI",
+        "type": "NUMC",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "INV_DAT",
+        "description": "[MM] 공급업체 청구일",
+        "element": "ZED1_MM_INVDAT",
+        "domain": "ZDD1_MM_INVDAT",
+        "type": "DATS",
+        "length": 8,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "EBELN",
+        "description": "[MM] 참조 PO 번호",
+        "element": "ZED1_MM_EBELN",
+        "domain": "ZDD1_MM_EBELN",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "EBELP",
+        "description": "[MM] 품목번호",
+        "element": "ZED1_MM_EBELP",
+        "domain": "ZDD1_MM_EBELP",
+        "type": "NUMC",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "MATNR",
+        "description": "[MM] 자재번호",
+        "element": "ZED1_MM_MATNR",
+        "domain": "ZDD1_MM_MATNR",
+        "type": "CHAR",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "MENGE",
+        "description": "[MM] 수량",
+        "element": "ZED1_MM_MENGE",
+        "domain": "ZDD1_MM_MENGE",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "ITEM_AMT",
+        "description": "[MM] 청구 금액",
+        "element": "ZED1_MM_ITEM_AMT",
+        "domain": "ZDD1_MM_ITEM_AMT",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "WAERS",
+        "description": "[CM] 통화코드",
+        "element": "ZED1_CM_WAERS",
+        "domain": "ZDD1_CM_WAERS",
+        "type": "CUKY",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 12,
+        "field": "OILPRICE",
+        "description": "[MM] 유가 단가",
+        "element": "ZED1_MM_OILPRICE",
+        "domain": "ZDD1_MM_OILPRICE",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 13,
+        "field": "PREMIUM",
+        "description": "[MM] OSP Premium 금액",
+        "element": "ZED1_MM_PREMIUM",
+        "domain": "ZDD1_MM_PREMIUM",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0042",
+    "name": "저장위치 좌표",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "WERKS",
+        "description": "[PP] 플랜트 ID",
+        "element": "ZED1_PP_WERKS",
+        "domain": "ZDD1_PP_WERKS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "LGORT",
+        "description": "[MM] Storage Location",
+        "element": "ZED1_MM_LGORT",
+        "domain": "ZDD1_MM_LGORT",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "LATITUDE",
+        "description": "[MM] 위도",
+        "element": "ZED1_MM_LATI",
+        "domain": "ZDD1_MM_LATI",
+        "type": "DEC",
+        "length": 9,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "LONGITUDE",
+        "description": "[MM] 경도",
+        "element": "ZED1_MM_LONG",
+        "domain": "ZDD1_MM_LONG",
+        "type": "DEC",
+        "length": 10,
+        "remark": null
+      }
+    ]
+  },
+  {
+    "code": "ZTD1MM0043",
+    "name": "재고이동 매핑 테이블 PLANT TO PLANT",
+    "purpose": "(프로그램 나오면 정의)",
+    "module": "Material Management ( MM )",
+    "fields": [
+      {
+        "no": 1,
+        "field": "MANDT",
+        "description": "Client",
+        "element": "MANDT",
+        "domain": "MANDT",
+        "type": "CLNT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 2,
+        "field": "MOVE_ID",
+        "description": "[MM] 내부이동 매핑 ID",
+        "element": "ZED1_MM_LINK_ID",
+        "domain": "ZDD1_MM_LINK_ID",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 3,
+        "field": "WERKS_FR",
+        "description": "[PP] 플랜트 ID",
+        "element": "ZED1_PP_WERKS",
+        "domain": "ZDD1_PP_WERKS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 4,
+        "field": "LGORT_FR",
+        "description": "[MM] Storage Location",
+        "element": "ZED1_MM_LGORT",
+        "domain": "ZDD1_MM_LGORT",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 5,
+        "field": "WERKS_TO",
+        "description": "[PP] 플랜트 ID",
+        "element": "ZED1_PP_WERKS",
+        "domain": "ZDD1_PP_WERKS",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 6,
+        "field": "LGORT_TO",
+        "description": "[MM] Storage Location",
+        "element": "ZED1_MM_LGORT",
+        "domain": "ZDD1_MM_LGORT",
+        "type": "CHAR",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 7,
+        "field": "STAT",
+        "description": "[MM] 이동 완료 여부",
+        "element": "ZED1_MM_MSTAT",
+        "domain": "ZDD1_MM_MSTAT",
+        "type": "CHAR",
+        "length": 1,
+        "remark": null
+      },
+      {
+        "no": 8,
+        "field": "PO_MBLNR",
+        "description": "[MM] 자재 문서 번호",
+        "element": "ZED1_MM_MBLNR",
+        "domain": "ZDD1_MM_MBLNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 9,
+        "field": "PO_MJAHR",
+        "description": "[MM] 문서 회계 연도",
+        "element": "ZED1_MM_MJAHR",
+        "domain": "ZDD1_MM_MJAHR",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 10,
+        "field": "PO_ZEILE",
+        "description": "[MM] 항목번호",
+        "element": "ZED1_MM_ZEILE",
+        "domain": "ZDD1_MM_ZEILE",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 11,
+        "field": "PG_MBLNR",
+        "description": "[MM] 자재 문서 번호",
+        "element": "ZED1_MM_MBLNR",
+        "domain": "ZDD1_MM_MBLNR",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 12,
+        "field": "PG_MJAHR",
+        "description": "[MM] 문서 회계 연도",
+        "element": "ZED1_MM_MJAHR",
+        "domain": "ZDD1_MM_MJAHR",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 13,
+        "field": "PG_ZEILE",
+        "description": "[MM] 항목번호",
+        "element": "ZED1_MM_ZEILE",
+        "domain": "ZDD1_MM_ZEILE",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 14,
+        "field": "LOSS_ZEILE",
+        "description": "[MM] 항목번호",
+        "element": "ZED1_MM_ZEILE",
+        "domain": "ZDD1_MM_ZEILE",
+        "type": "NUMC",
+        "length": 4,
+        "remark": null
+      },
+      {
+        "no": 15,
+        "field": "MATNR",
+        "description": "[MM] 탱크안에 들어있는 자재",
+        "element": "ZED1_MM_TKMAT",
+        "domain": "ZDD1_MM_TKMAT",
+        "type": "CHAR",
+        "length": 5,
+        "remark": null
+      },
+      {
+        "no": 16,
+        "field": "CHARG",
+        "description": "[MM] 배치번호",
+        "element": "ZED1_MM_CHARG",
+        "domain": "ZDD1_MM_CHARG",
+        "type": "CHAR",
+        "length": 10,
+        "remark": null
+      },
+      {
+        "no": 17,
+        "field": "MOVE_QTY",
+        "description": "[MM] 수량",
+        "element": "ZED1_MM_MENGE",
+        "domain": "ZDD1_MM_MENGE",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 18,
+        "field": "RECV_QTY",
+        "description": "[MM] 수량",
+        "element": "ZED1_MM_MENGE",
+        "domain": "ZDD1_MM_MENGE",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 19,
+        "field": "LOSS_QTY",
+        "description": "[MM] 수량",
+        "element": "ZED1_MM_MENGE",
+        "domain": "ZDD1_MM_MENGE",
+        "type": "QUAN",
+        "length": 24,
+        "remark": null
+      },
+      {
+        "no": 20,
+        "field": "MOVE_AMT",
+        "description": "[MM] 금액",
+        "element": "ZED1_MM_WRBTR",
+        "domain": "ZDD1_MM_WRBTR",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 21,
+        "field": "RECV_AMT",
+        "description": "[MM] 금액",
+        "element": "ZED1_MM_WRBTR",
+        "domain": "ZDD1_MM_WRBTR",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 22,
+        "field": "LOSS_AMT",
+        "description": "[MM] 금액",
+        "element": "ZED1_MM_WRBTR",
+        "domain": "ZDD1_MM_WRBTR",
+        "type": "CURR",
+        "length": 23,
+        "remark": null
+      },
+      {
+        "no": 23,
+        "field": "MEINS",
+        "description": "[MM] 기본단위",
+        "element": "ZED1_MM_MEINS",
+        "domain": "ZDD1_MM_MEINS",
+        "type": "UNIT",
+        "length": 3,
+        "remark": null
+      },
+      {
+        "no": 24,
+        "field": "WAERS",
+        "description": "[MM] 통화",
+        "element": "ZED1_MM_WAERS",
+        "domain": "ZDD1_MM_WAERS",
+        "type": "CUKY",
+        "length": 5,
+        "remark": null
+      }
+    ]
+  }
+]

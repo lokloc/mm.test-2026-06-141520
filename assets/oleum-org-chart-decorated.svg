@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#0f2f6f" flood-opacity="0.16"/>
+    </filter>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#0f2f6f" flood-opacity="0.12"/>
+    </filter>
+    <linearGradient id="companyBlue" x1="0" x2="1">
+      <stop offset="0" stop-color="#0f67ff"/>
+      <stop offset="1" stop-color="#0048e8"/>
+    </linearGradient>
+    <linearGradient id="moduleBlue" x1="0" x2="1">
+      <stop offset="0" stop-color="#4d87ff"/>
+      <stop offset="1" stop-color="#1760f6"/>
+    </linearGradient>
+    <style>
+      .title { font-family: "Noto Sans KR", "Malgun Gothic", Arial, sans-serif; font-size: 58px; font-weight: 800; fill: #090d18; }
+      .eyebrow { font-family: "Noto Sans KR", "Malgun Gothic", Arial, sans-serif; font-size: 18px; font-weight: 700; fill: #0f67ff; }
+      .subtitle { font-family: "Noto Sans KR", "Malgun Gothic", Arial, sans-serif; font-size: 18px; font-weight: 700; fill: #8195ba; }
+      .companyText { font-family: Arial, sans-serif; font-size: 42px; font-weight: 800; fill: #fff; }
+      .moduleText { font-family: "Noto Sans KR", "Malgun Gothic", Arial, sans-serif; font-size: 28px; font-weight: 800; fill: #fff; }
+      .teamText { font-family: "Noto Sans KR", "Malgun Gothic", Arial, sans-serif; font-size: 23px; font-weight: 800; fill: #114fe9; }
+      .line { stroke: #24324d; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-linejoin: round; opacity: 0.64; }
+      .plant { stroke: #b8c9df; stroke-width: 2.2; fill: none; stroke-linecap: round; stroke-linejoin: round; opacity: 0.35; }
+      .tank { fill: #f2f7fd; stroke: #b8c9df; stroke-width: 2.2; opacity: 0.45; }
+      .iconWhite { stroke: #fff; fill: none; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+      .iconBlue { stroke: #0f5bff; fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="#f7f9fc"/>
+  <rect x="0" y="0" width="42" height="900" fill="#0f5bff"/>
+
+  <g transform="translate(905 92)">
+    <path class="plant" d="M0 548H510M22 548v-64h86v64M38 484v-36h54v36M146 548v-105h110v105M166 443v-40h70v40M296 548v-156h34v156M287 392h52M304 392v-62h18v62M386 548v-218h42v218M378 330h58M395 330v-48h24v48M470 548v-112h44v112"/>
+    <path class="plant" d="M10 586h510M26 586c30-40 64-40 94 0M148 586c30-40 64-40 94 0M270 586c30-40 64-40 94 0M392 586c30-40 64-40 94 0"/>
+    <path class="plant" d="M-30 620h640M20 620c80-64 170-64 250 0M300 620c60-44 130-44 190 0"/>
+    <rect class="tank" x="-42" y="530" width="84" height="58" rx="8"/>
+    <ellipse class="tank" cx="0" cy="530" rx="42" ry="12"/>
+    <rect class="tank" x="520" y="514" width="110" height="78" rx="10"/>
+    <ellipse class="tank" cx="575" cy="514" rx="55" ry="14"/>
+  </g>
+
+  <text class="eyebrow" x="86" y="90">OLEUM COMPANY</text>
+  <text class="title" x="86" y="153">&#xC870;&#xC9C1;&#xB3C4;</text>
+  <text class="subtitle" x="88" y="190">&#xC815;&#xC720;/&#xC11D;&#xC720;&#xD654;&#xD559; &#xC81C;&#xD488; &#xC81C;&#xC870; &#xBC0F; &#xC720;&#xD1B5;&#xAD00;&#xB9AC; &#xD504;&#xB85C;&#xC81D;&#xD2B8; &#xD300; &#xAD6C;&#xC131;</text>
+
+  <g filter="url(#cardShadow)">
+    <rect x="640" y="78" width="320" height="92" rx="18" fill="url(#companyBlue)"/>
+    <g transform="translate(674 111)" class="iconWhite">
+      <path d="M0 39h61"/>
+      <rect x="6" y="16" width="13" height="23" rx="2"/>
+      <rect x="25" y="4" width="13" height="35" rx="2"/>
+      <rect x="44" y="24" width="13" height="15" rx="2"/>
+      <path d="M31 4v-13h12v13M50 24V8h10v16"/>
+    </g>
+    <text class="companyText" x="748" y="137">oleum</text>
+  </g>
+
+  <path class="line" d="M800 170v72M350 242h900M350 242v52M630 242v52M1010 242v52M1290 242v52"/>
+
+  <g filter="url(#softShadow)">
+    <rect x="220" y="294" width="260" height="78" rx="14" fill="url(#moduleBlue)"/>
+    <g transform="translate(244 316)" class="iconWhite">
+      <circle cx="19" cy="19" r="14"/>
+      <path d="M10 23h18M12 14h14M19 5v28"/>
+    </g>
+    <text class="moduleText" x="292" y="342">[SD] &#xC601;&#xC5C5;&#xAD00;&#xB9AC;</text>
+
+    <rect x="500" y="294" width="260" height="78" rx="14" fill="url(#moduleBlue)"/>
+    <g transform="translate(524 316)" class="iconWhite">
+      <path d="M6 12h31l-4 24H10z"/>
+      <path d="M13 12c0-7 4-10 9-10s9 3 9 10"/>
+      <circle cx="14" cy="42" r="3"/><circle cx="31" cy="42" r="3"/>
+    </g>
+    <text class="moduleText" x="572" y="342">[MM] &#xAD6C;&#xB9E4;&#xAD00;&#xB9AC;</text>
+
+    <rect x="880" y="294" width="260" height="78" rx="14" fill="url(#moduleBlue)"/>
+    <g transform="translate(904 316)" class="iconWhite">
+      <path d="M4 36h40M8 36V18h12v18M26 36V8h12v28"/>
+      <path d="M38 8h8v28"/>
+    </g>
+    <text class="moduleText" x="952" y="342">[PP] &#xC0DD;&#xC0B0;&#xAD00;&#xB9AC;</text>
+
+    <rect x="1160" y="294" width="260" height="78" rx="14" fill="url(#moduleBlue)"/>
+    <g transform="translate(1184 316)" class="iconWhite">
+      <rect x="6" y="6" width="34" height="34" rx="5"/>
+      <path d="M14 16h18M14 25h18M14 34h10"/>
+      <path d="M34 34l8 8"/>
+    </g>
+    <text class="moduleText" x="1232" y="342">[FI] &#xC7AC;&#xBB34;&#xAD00;&#xB9AC;</text>
+  </g>
+
+  <path class="line" d="M350 372v50M630 372v50M1010 372v50M1290 372v50"/>
+  <path class="line" d="M350 494v32M630 494v32M1010 494v32M1290 494v32"/>
+  <path class="line" d="M630 598v32M1010 598v32"/>
+
+  <g filter="url(#softShadow)">
+    <rect x="245" y="422" width="210" height="64" rx="12" fill="#fff" stroke="#d7e1ef" stroke-width="2"/>
+    <g transform="translate(265 441)" class="iconBlue"><circle cx="14" cy="10" r="7"/><path d="M2 31c3-10 21-10 24 0"/><path d="M31 8h22M31 20h18"/></g>
+    <text class="teamText" x="313" y="463">&#xACE0;&#xAC1D; &#xAD00;&#xB9AC;&#xD300;</text>
+
+    <rect x="245" y="526" width="210" height="64" rx="12" fill="#fff" stroke="#d7e1ef" stroke-width="2"/>
+    <g transform="translate(265 545)" class="iconBlue"><path d="M2 27h42"/><path d="M8 27V10h26v17"/><circle cx="14" cy="32" r="4"/><circle cx="34" cy="32" r="4"/><path d="M31 13h12l5 8v6"/></g>
+    <text class="teamText" x="313" y="567">&#xD310;&#xB9E4; &#xAD00;&#xB9AC;&#xD300;</text>
+
+    <rect x="525" y="422" width="210" height="64" rx="12" fill="#fff" stroke="#d7e1ef" stroke-width="2"/>
+    <g transform="translate(545 441)" class="iconBlue"><path d="M8 16h34l-5 22H13z"/><path d="M17 16c0-7 4-10 9-10s9 3 9 10"/><circle cx="17" cy="43" r="3"/><circle cx="34" cy="43" r="3"/></g>
+    <text class="teamText" x="593" y="463">&#xC790;&#xC7AC; &#xAD6C;&#xB9E4;&#xD300;</text>
+
+    <rect x="525" y="526" width="210" height="64" rx="12" fill="#fff" stroke="#d7e1ef" stroke-width="2"/>
+    <g transform="translate(545 545)" class="iconBlue"><circle cx="11" cy="18" r="7"/><circle cx="38" cy="18" r="7"/><path d="M18 18h13"/><path d="M5 39c4-9 18-9 24 0M30 39c4-9 18-9 24 0"/></g>
+    <text class="teamText" x="593" y="567">&#xACF5;&#xAE09;&#xCC98; &#xAD00;&#xB9AC;&#xD300;</text>
+
+    <rect x="525" y="630" width="210" height="64" rx="12" fill="#fff" stroke="#d7e1ef" stroke-width="2"/>
+    <g transform="translate(545 649)" class="iconBlue"><path d="M5 16h42v27H5z"/><path d="M5 16l8-10h26l8 10M18 43V28h16v15M10 24h8M34 24h8"/></g>
+    <text class="teamText" x="593" y="671">&#xCC3D;&#xACE0; &#xAD00;&#xB9AC;&#xD300;</text>
+
+    <rect x="905" y="422" width="210" height="64" rx="12" fill="#fff" stroke="#d7e1ef" stroke-width="2"/>
+    <g transform="translate(925 441)" class="iconBlue"><rect x="5" y="7" width="36" height="34" rx="4"/><path d="M13 16h20M13 25h20M13 34h12"/><path d="M36 4v8M10 4v8"/></g>
+    <text class="teamText" x="973" y="463">&#xC0DD;&#xC0B0; &#xACC4;&#xD68D;&#xD300;</text>
+
+    <rect x="905" y="526" width="210" height="64" rx="12" fill="#fff" stroke="#d7e1ef" stroke-width="2"/>
+    <g transform="translate(925 545)" class="iconBlue"><path d="M4 34h42M9 34V17h13v17M28 34V8h13v26"/><path d="M41 8h8v26"/></g>
+    <text class="teamText" x="973" y="567">&#xC0DD;&#xC0B0; &#xAD00;&#xB9AC;&#xD300;</text>
+
+    <rect x="905" y="630" width="210" height="64" rx="12" fill="#fff" stroke="#d7e1ef" stroke-width="2"/>
+    <g transform="translate(925 649)" class="iconBlue"><circle cx="17" cy="17" r="8"/><circle cx="38" cy="29" r="8"/><path d="M24 20l7 4M7 40h42M12 40v-8M44 40v-6"/></g>
+    <text class="teamText" x="973" y="671">&#xACF5;&#xC815; &#xAE30;&#xC220;&#xD300;</text>
+
+    <rect x="1185" y="422" width="210" height="64" rx="12" fill="#fff" stroke="#d7e1ef" stroke-width="2"/>
+    <g transform="translate(1205 441)" class="iconBlue"><rect x="7" y="7" width="34" height="34" rx="5"/><path d="M15 17h18M15 26h18M15 35h10"/></g>
+    <text class="teamText" x="1253" y="463">&#xC7AC;&#xBB34;&#xD300;</text>
+
+    <rect x="1185" y="526" width="210" height="64" rx="12" fill="#fff" stroke="#d7e1ef" stroke-width="2"/>
+    <g transform="translate(1205 545)" class="iconBlue"><path d="M8 8h34v36H8z"/><path d="M16 17h18M16 26h18M16 35h12"/><path d="M37 35l8 8"/></g>
+    <text class="teamText" x="1253" y="567">&#xD68C;&#xACC4;&#xD300;</text>
+  </g>
+
+  <circle cx="350" cy="405" r="5" fill="#0f5bff"/>
+  <circle cx="630" cy="405" r="5" fill="#0f5bff"/>
+  <circle cx="1010" cy="405" r="5" fill="#0f5bff"/>
+  <circle cx="1290" cy="405" r="5" fill="#0f5bff"/>
+
+  <circle cx="103" cy="835" r="12" fill="#c7d8ff"/>
+  <circle cx="133" cy="835" r="12" fill="#9cbdff"/>
+  <circle cx="163" cy="835" r="12" fill="#6f9cff"/>
+  <circle cx="193" cy="835" r="12" fill="#3672ff"/>
+  <circle cx="223" cy="835" r="12" fill="#0055ff"/>
+
+  <g transform="translate(1482 795)" opacity="0.32">
+    <path d="M0 40h86M12 40v-34h10v34M28 40V14h10v26M44 40V0h10v40M60 40V22h10v18" stroke="#8aa7ca" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <text x="4" y="72" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#8aa7ca">oleum</text>
+  </g>
+</svg>

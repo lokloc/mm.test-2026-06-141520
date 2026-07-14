@@ -1,0 +1,130 @@
+<mvc:View controllerName="code.t1.mm.test.controller.Main"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="page" title="{i18n>billTitle}" showNavButton="false" class="mainPage sapUiNoContentPadding" backgroundDesign="List">
+        <headerContent>
+            <ObjectStatus visible="{appDateTime>/configured}"
+                title="{i18n>labelAppDateTime}"
+                text="{appDateTime>/displayText}"
+                state="Information" />
+        </headerContent>
+        <content>
+            <VBox class="mainRoot sapUiResponsiveContentPadding">
+            <Panel id="searchPanel" headerText="{i18n>searchConditions}" expandable="true" expanded="true" class="sapUiSmallMarginBottom">
+                <content>
+                    <VBox id="searchForm" class="mainSearchForm">
+                        <HBox class="mainSearchFormRow" alignItems="Center">
+                            <HBox class="mainSearchField" alignItems="Center">
+                                <Label text="{i18n>labelVendor}" class="mainSearchLabel" />
+                                <Input id="inpLifnr" class="mainSearchInput" placeholder="{i18n>phVendor}"
+                                    showValueHelp="true" valueHelpRequest=".onVendorValueHelp" />
+                            </HBox>
+                            <HBox class="mainSearchField" alignItems="Center">
+                                <Label text="{i18n>labelIvNo}" class="mainSearchLabel" />
+                                <Input id="inpInvNo" class="mainSearchInput" placeholder="{i18n>phInvNo}"
+                                    showValueHelp="true" valueHelpRequest=".onBillValueHelp" />
+                            </HBox>
+                        </HBox>
+                        <HBox class="mainSearchFormRow" alignItems="Center">
+                            <HBox class="mainSearchField" alignItems="Center">
+                                <Label text="{i18n>labelIvDate}" class="mainSearchLabel" />
+                                <DateRangeSelection id="drsBillDate" class="mainSearchInput"
+                                    displayFormat="yyyy.MM.dd" placeholder="{i18n>phInvDate}" />
+                            </HBox>
+                            <HBox class="mainSearchField" alignItems="Center">
+                                <Label text="{i18n>labelStatus}" class="mainSearchLabel" />
+                                <ComboBox id="cbInvStatus" class="mainSearchInput" placeholder="{i18n>phStatus}">
+                                    <items>
+                                        <core:Item key="" text="{i18n>statusAll}" />
+                                        <core:Item key="N" text="{i18n>statusNotCreated}" />
+                                        <core:Item key="C" text="{i18n>statusCreated}" />
+                                    </items>
+                                </ComboBox>
+                            </HBox>
+                        </HBox>
+                    </VBox>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <Button text="{i18n>btnReset}" icon="sap-icon://reset" press=".onResetSearch" />
+                        <Button text="{i18n>btnSearch}" icon="sap-icon://search" type="Emphasized" press=".onSearch" />
+                    </OverflowToolbar>
+                </content>
+            </Panel>
+
+            <Panel id="summaryPanel" headerText="{i18n>summaryTitle}" class="mainSummaryPanel sapUiSmallMarginBottom">
+                <content>
+                    <FlexBox wrap="Wrap" justifyContent="Start" alignItems="Start" class="mainSummaryTiles">
+                        <GenericTile header="{i18n>cardNotCreated}" subheader="{i18n>cardNotCreatedSub}"
+                            frameType="OneByOne" press=".onStatusCardPress" class="mainSummaryTile sapUiTinyMarginEnd sapUiTinyMarginBottom">
+                            <customData>
+                                <core:CustomData key="status" value="N" />
+                            </customData>
+                            <tileContent>
+                                <TileContent unit="{i18n>cardUnit}">
+                                    <content>
+                                        <NumericContent icon="sap-icon://document" value="{summary>/notCreatedCount}"
+                                            valueColor="Critical" withMargin="false" />
+                                    </content>
+                                </TileContent>
+                            </tileContent>
+                        </GenericTile>
+                        <GenericTile header="{i18n>cardCreated}" subheader="{i18n>cardCreatedSub}"
+                            frameType="OneByOne" press=".onStatusCardPress" class="mainSummaryTile sapUiTinyMarginEnd sapUiTinyMarginBottom">
+                            <customData>
+                                <core:CustomData key="status" value="C" />
+                            </customData>
+                            <tileContent>
+                                <TileContent unit="{i18n>cardUnit}">
+                                    <content>
+                                        <NumericContent icon="sap-icon://accept" value="{summary>/createdCount}"
+                                            valueColor="Good" withMargin="false" />
+                                    </content>
+                                </TileContent>
+                            </tileContent>
+                        </GenericTile>
+                    </FlexBox>
+                </content>
+            </Panel>
+
+            <Panel id="billListPanel" headerText="{i18n>billList}">
+                <content>
+                    <Table id="billTable" width="100%" fixedLayout="false" noDataText="{i18n>tableNoData}">
+                        <headerToolbar>
+                            <OverflowToolbar>
+                                <ToolbarSpacer />
+                                <Button icon="sap-icon://refresh" type="Transparent" tooltip="{i18n>btnRefresh}" press=".onRefresh" />
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        <columns>
+                            <Column width="8rem"><Text text="{i18n>colInvNo}" /></Column>
+                            <Column width="8rem"><Text text="{i18n>colInvDate}" /></Column>
+                            <Column width="9rem"><Text text="{i18n>colPoNo}" /></Column>
+                            <Column width="10rem" hAlign="End"><Text text="{i18n>colAmount}" /></Column>
+                            <!-- <Column width="5rem"><Text text="{i18n>colCurrency}" /></Column> -->
+                            <Column width="9rem"><Text text="{i18n>colStatus}" /></Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem type="Navigation" press=".onBillPress">
+                                <cells>
+                                    <Text text="{billList>InvNo}" />
+                                    <Text text="{path: 'billList>InvDat', formatter: '.formatInvDate'}" />
+                                    <Text text="{billList>Ebeln}" />
+                                    <ObjectNumber number="{
+                                        path: 'billList>TotalAmt',
+                                        type: 'sap.ui.model.type.Float',
+                                        formatOptions: { minFractionDigits: 2, maxFractionDigits: 2 }
+                                    }" unit="{billList>Waers}" />
+                                    <!-- <Text text="{billList>Waers}" /> -->
+                                    <ObjectStatus text="{path: 'billList>IvZlspr', formatter: '.formatInvoiceStatus'}"
+                                        state="{path: 'billList>IvZlspr', formatter: '.formatInvoiceStatusState'}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </content>
+            </Panel>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

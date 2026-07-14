@@ -1,0 +1,5 @@
+﻿{
+    "Project":  "approval.btrip",
+    "Status":  "failed",
+    "Repository":  "Cannot process argument because the value of argument \"name\" is not valid. Change the value of the \"name\" argument and run the operation again. | at Get-ProjectMetadata, C:\\ui5\\mm.test-2026-06-141520\\publish-ui5-projects.ps1: line 16\r\nat \u003cScriptBlock\u003e, C:\\ui5\\mm.test-2026-06-141520\\publish-ui5-projects.ps1: line 79\r\nat \u003cScriptBlock\u003e, \u003cNo file\u003e: line 2"
+}

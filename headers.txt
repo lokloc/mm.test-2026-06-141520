@@ -1,0 +1,14 @@
+HTTP/1.1 501 Not Implemented
+X-Powered-By: Express
+set-cookie: sap-usercontext=sap-client=100; path=/
+set-cookie: SAP_SESSIONID_EFX_100=QyDRKuhb542x9nKD35HWa22bOmdY2hHxkh8lN3LevgY%3d; path=/; HttpOnly
+content-type: application/xml;charset=utf-8
+content-length: 1219
+x-csrf-token: mqW0F2CuOh0t3y0IXvUqOw==
+dataserviceversion: 1.0
+sap-server: true
+sap-perf-fesrec: 82052.000000
+connection: close
+Vary: Accept-Encoding
+Date: Tue, 26 May 2026 08:10:28 GMT
+

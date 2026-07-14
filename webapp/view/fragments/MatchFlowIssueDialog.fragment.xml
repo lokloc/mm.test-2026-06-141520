@@ -1,0 +1,182 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Dialog
+        id="matchFlowIssueDialog"
+        title="{i18n>matchIssueDialogTitle}"
+        contentWidth="56rem"
+        contentHeight="auto"
+        stretchOnPhone="true"
+        class="matchFlowIssueDialog">
+        <content>
+            <VBox class="sapUiSmallMargin">
+                <MessageStrip
+                    text="{matchView>/summary/issueDetail}"
+                    type="{= ${matchView>/summary/overallState} === 'Success' ? 'Success' : 'Warning' }"
+                    showIcon="true"
+                    class="sapUiSmallMarginBottom" />
+                <Title text="{i18n>sectionMatchFlow}" level="H5" class="threeWayMatchSectionTitle sapUiTinyMarginBottom" />
+                <HBox class="threeWayMatchFlow matchFlowIssueDialogFlow" alignItems="Stretch" wrap="Wrap">
+                    <VBox class="{parts: [{path: 'matchView>/flowIssue/po/card'}], formatter: '.formatFlowCardClass'}">
+                        <HBox alignItems="Center" justifyContent="SpaceBetween" class="threeWayMatchFlowCardHeader">
+                            <HBox alignItems="Center">
+                                <core:Icon src="sap-icon://flight" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                                <Title text="{i18n>flowStepPo}" level="H5" />
+                            </HBox>
+                            <ObjectStatus text="{matchView>/po/status}" state="{matchView>/po/statusState}" />
+                        </HBox>
+                        <VBox class="threeWayMatchFlowCardBody">
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelPoNo}" />
+                                <Text text="{matchView>/po/docNo}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelPoDate}" />
+                                <Text text="{matchView>/po/docDate}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween"
+                                class="{parts: [{path: 'matchView>/flowIssue/po/amount'}], formatter: '.formatFlowFieldClass'}">
+                                <Label text="{i18n>labelAmount}" />
+                                <Text text="{
+                                    parts: [{ path: 'matchView>/po/amount' }, { path: 'matchView>/po/waers' }],
+                                    formatter: '.formatAmount'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween"
+                                class="{parts: [{path: 'matchView>/flowIssue/po/qty'}], formatter: '.formatFlowFieldClass'}">
+                                <Label text="{i18n>labelQty}" />
+                                <Text text="{
+                                    parts: [{ path: 'matchView>/po/qty' }, { path: 'matchView>/po/meins' }],
+                                    formatter: '.formatQty'
+                                }" />
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                    <VBox class="{parts: [{path: 'matchView>/flowIssue/poGrLink'}], formatter: '.formatFlowConnectorClass'}"
+                        alignItems="Center" justifyContent="Center">
+                        <core:Icon src="sap-icon://arrow-right" size="1.5rem" color="#6a6d70" />
+                    </VBox>
+
+                    <VBox class="{parts: [{path: 'matchView>/flowIssue/gr/card'}], formatter: '.formatFlowCardClass'}">
+                        <HBox alignItems="Center" justifyContent="SpaceBetween" class="threeWayMatchFlowCardHeader">
+                            <HBox alignItems="Center">
+                                <core:Icon src="sap-icon://shipping-status" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                                <Title text="{i18n>flowStepGr}" level="H5" />
+                            </HBox>
+                            <ObjectStatus text="{matchView>/gr/status}" state="{matchView>/gr/statusState}" />
+                        </HBox>
+                        <VBox class="threeWayMatchFlowCardBody">
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelGrNo}" />
+                                <Text text="{matchView>/gr/docNo}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelGrDate}" />
+                                <Text text="{matchView>/gr/docDate}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween"
+                                class="{parts: [{path: 'matchView>/flowIssue/gr/amount'}], formatter: '.formatFlowFieldClass'}">
+                                <Label text="{i18n>labelGrAmountUsd}" />
+                                <Text text="{
+                                    parts: [
+                                        { path: 'matchView>/gr/amountFx' },
+                                        { path: 'matchView>/gr/amountLocal' },
+                                        { path: 'matchView>/gr/fxRate' },
+                                        { path: 'matchView>/gr/waersFx' }
+                                    ],
+                                    formatter: '.formatGrAmountFx'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween"
+                                class="{parts: [{path: 'matchView>/flowIssue/gr/qty'}], formatter: '.formatFlowFieldClass'}">
+                                <Label text="{i18n>labelQty}" />
+                                <Text text="{
+                                    parts: [{ path: 'matchView>/gr/qty' }, { path: 'matchView>/gr/meins' }],
+                                    formatter: '.formatQty'
+                                }" />
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                    <VBox class="{parts: [{path: 'matchView>/flowIssue/grInvLink'}], formatter: '.formatFlowConnectorClass'}"
+                        alignItems="Center" justifyContent="Center">
+                        <core:Icon src="sap-icon://arrow-right" size="1.5rem" color="#6a6d70" />
+                    </VBox>
+
+                    <VBox class="{parts: [{path: 'matchView>/flowIssue/inv/card'}], formatter: '.formatFlowCardClass'}">
+                        <HBox alignItems="Center" justifyContent="SpaceBetween" class="threeWayMatchFlowCardHeader">
+                            <HBox alignItems="Center">
+                                <core:Icon src="sap-icon://money-bills" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                                <Title text="{i18n>flowStepInv}" level="H5" />
+                            </HBox>
+                            <ObjectStatus text="{matchView>/inv/status}" state="{matchView>/inv/statusState}" />
+                        </HBox>
+                        <VBox class="threeWayMatchFlowCardBody">
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelIvNo}" />
+                                <Text text="{matchView>/inv/docNo}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelIvDate}" />
+                                <Text text="{matchView>/inv/docDate}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween"
+                                class="{parts: [{path: 'matchView>/flowIssue/inv/amount'}], formatter: '.formatFlowFieldClass'}">
+                                <Label text="{i18n>labelAmount}" />
+                                <Text text="{
+                                    parts: [{ path: 'matchView>/inv/amount' }, { path: 'matchView>/inv/waers' }],
+                                    formatter: '.formatAmount'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelFxRateDate}" />
+                                <Text text="{matchView>/inv/fxRateDate}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelFxRate}" />
+                                <Text text="{
+                                    parts: [
+                                        { path: 'matchView>/inv/fxRate' },
+                                        { path: 'matchView>/inv/waersFx' },
+                                        { path: 'matchView>/inv/waersLocal' }
+                                    ],
+                                    formatter: '.formatFxRatePair'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelGrAmountUsd}" />
+                                <Text text="{
+                                    parts: [
+                                        { path: 'matchView>/inv/amountLocal' },
+                                        { path: 'matchView>/inv/waersLocal' }
+                                    ],
+                                    formatter: '.formatAmount'
+                                }" class="threeWayMatchEmphasized" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween"
+                                class="{parts: [{path: 'matchView>/flowIssue/inv/qty'}], formatter: '.formatFlowFieldClass'}">
+                                <Label text="{i18n>labelQty}" />
+                                <Text text="{
+                                    parts: [{ path: 'matchView>/inv/qty' }, { path: 'matchView>/inv/meins' }],
+                                    formatter: '.formatQty'
+                                }" />
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                    <VBox class="threeWayMatchFlowResult matchFlowIssueDialogResult" alignItems="Center" justifyContent="Center">
+                        <core:Icon
+                            src="{= ${matchView>/summary/flowSuccess} ? 'sap-icon://accept' : 'sap-icon://alert' }"
+                            size="2.5rem"
+                            color="{= ${matchView>/summary/flowSuccess} ? '#107e3e' : '#bb0000' }" />
+                        <Text text="{matchView>/summary/overallStatus}" class="threeWayMatchFlowResultText sapUiTinyMarginTop" />
+                    </VBox>
+                </HBox>
+            </VBox>
+        </content>
+        <beginButton>
+            <Button text="{i18n>btnClose}" type="Emphasized" press=".onCloseMatchIssueDialog" />
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

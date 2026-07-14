@@ -1,0 +1,48 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:commons="sap.suite.ui.commons">
+    <Dialog
+        id="invoiceProcessFlowDialog"
+        title="{i18n>labelInvoiceProcessFlow}"
+        contentWidth="48rem"
+        contentHeight="auto"
+        stretchOnPhone="true"
+        class="invoiceProcessFlowDialog">
+        <content>
+            <HBox width="100%" justifyContent="Center" alignItems="Center" class="invoiceProcessFlowDialogContent sapUiSmallMargin">
+                <commons:ProcessFlow
+                    id="invoiceProcessFlow"
+                    scrollable="false"
+                    wheelZoomable="false"
+                    foldedCorners="false"
+                    nodes="{invoiceProcessFlow>/nodes}"
+                    lanes="{invoiceProcessFlow>/lanes}"
+                    nodePress=".onInvoiceProcessNodePress"
+                    class="invoiceProcessFlow">
+                    <commons:nodes>
+                        <commons:ProcessFlowNode
+                            laneId="{invoiceProcessFlow>laneId}"
+                            nodeId="{invoiceProcessFlow>nodeId}"
+                            title="{invoiceProcessFlow>title}"
+                            titleAbbreviation="{invoiceProcessFlow>titleAbbreviation}"
+                            children="{invoiceProcessFlow>children}"
+                            state="{invoiceProcessFlow>state}"
+                            stateText="{invoiceProcessFlow>stateText}"
+                            highlighted="{invoiceProcessFlow>highlighted}" />
+                    </commons:nodes>
+                    <commons:lanes>
+                        <commons:ProcessFlowLaneHeader
+                            laneId="{invoiceProcessFlow>laneId}"
+                            iconSrc="{invoiceProcessFlow>iconSrc}"
+                            text="{invoiceProcessFlow>text}"
+                            position="{invoiceProcessFlow>position}" />
+                    </commons:lanes>
+                </commons:ProcessFlow>
+            </HBox>
+        </content>
+        <beginButton>
+            <Button text="{i18n>btnClose}" type="Emphasized" press=".onCloseInvoiceProcessDialog" />
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

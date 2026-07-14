@@ -1,0 +1,740 @@
+<mvc:View controllerName="code.t1.mm.test.controller.InvoiceCreate"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:graph="code.t1.mm.test.controls">
+    <Page id="invoiceCreatePage" showNavButton="false" enableScrolling="true" floatingFooter="true" backgroundDesign="List" class="invoiceCreatePage threeWayMatchPage sapUiNoContentPadding">
+        <customHeader>
+            <Bar design="Header" class="pageTopBar">
+                <contentLeft>
+                    <Breadcrumbs currentLocationText="{i18n>invoiceCreateTitle}">
+                        <links>
+                            <Link text="{i18n>billTitle}" press=".onNavMain" class="pageBreadcrumbLink" />
+                            <Link text="{i18n>billDetailTitle}" press=".onNavBillDetail" class="pageBreadcrumbLink" />
+                        </links>
+                    </Breadcrumbs>
+                </contentLeft>
+                <contentRight>
+                    <Button icon="sap-icon://nav-back" type="Transparent" tooltip="{i18n>btnBack}"
+                        press=".onNavBack" class="pageHeaderBackBtn" />
+                </contentRight>
+            </Bar>
+        </customHeader>
+        <content>
+            <VBox class="invoiceCreateRoot sapUiResponsiveContentPadding">
+                <!-- Hero -->
+                <VBox class="invoiceCreateHero sapUiSmallMarginBottom">
+                    <HBox alignItems="Start" justifyContent="SpaceBetween" wrap="Wrap">
+                        <VBox class="sapUiSmallMarginBottom">
+                            <HBox alignItems="Center" wrap="Wrap">
+                                <Title text="{invoiceHeader>/InvNo}" level="H2" class="invoiceCreateHeroTitle sapUiTinyMarginEnd" />
+                                <ObjectStatus text="{i18n>statusPrepReady}"
+                                    state="{path: '', formatter: '.formatPrepStatusState'}"
+                                    class="invoiceCreateStatusBadge" />
+                            </HBox>
+                            <Text text="{
+                                parts: [
+                                    { path: 'invoiceHeader>/Bukrs' },
+                                    { path: 'invoiceHeader>/BukrsName' }
+                                ],
+                                formatter: '.formatBukrsWithName'
+                            }" class="invoiceCreateVendor sapUiTinyMarginTop" />
+                            <Text text="{i18n>invoiceCreateCombinedDesc}" class="invoiceCreateDesc sapUiTinyMarginTop" />
+                        </VBox>
+                        <HBox wrap="Wrap" justifyContent="End" class="invoiceCreateKpiRow threeWayMatchKpiRow">
+                            <VBox class="threeWayMatchKpiTile sapUiTinyMarginBegin sapUiSmallMarginBottom">
+                                <Label text="{i18n>labelInvoiceProcessFlow}" design="Bold" />
+                                <ObjectStatus text="{invoiceProcessFlow>/summary/text}"
+                                    state="{invoiceProcessFlow>/summary/state}"
+                                    active="true"
+                                    press=".onShowInvoiceProcessFlow"
+                                    icon="sap-icon://process" />
+                            </VBox>
+                            <VBox class="threeWayMatchKpiTile sapUiTinyMarginBegin sapUiSmallMarginBottom">
+                                <Label text="{i18n>labelMatchResult}" design="Bold" />
+                                <ObjectStatus text="{matchView>/summary/matchResult}"
+                                    state="{matchView>/summary/matchResultState}"
+                                    active="{= ${matchView>/summary/matchResultState} !== 'Success' }"
+                                    press=".onShowMatchIssueDetail" />
+                            </VBox>
+                            <VBox class="invoiceCreateKpiTile sapUiTinyMarginBegin sapUiSmallMarginBottom">
+                                <Label text="{i18n>kpiAmount}" design="Bold" />
+                                <Text text="{
+                                    parts: [{ path: 'invoiceItem>/ItemAmt' }, { path: 'invoiceItem>/Waers' }],
+                                    formatter: '.formatAmount'
+                                }" class="invoiceCreateKpiValue sapUiTinyMarginTop" />
+                            </VBox>
+                            <VBox class="invoiceCreateKpiTile sapUiTinyMarginBegin sapUiSmallMarginBottom">
+                                <Label text="{i18n>labelBaseAmount}" design="Bold" />
+                                <Text text="{
+                                    parts: [{ path: 'invoiceMetrics>/calcAmount' }, { path: 'invoiceItem>/Waers' }],
+                                    formatter: '.formatAmount'
+                                }" class="invoiceCreateKpiValue sapUiTinyMarginTop" />
+                            </VBox>
+                            <VBox class="invoiceCreateKpiTile sapUiTinyMarginBegin sapUiSmallMarginBottom">
+                                <Label text="{i18n>labelDiffAmount}" design="Bold" />
+                                <Text text="{
+                                    parts: [{ path: 'invoiceMetrics>/amountDiff' }, { path: 'invoiceItem>/Waers' }],
+                                    formatter: '.formatAmount'
+                                }" class="invoiceCreateKpiValue sapUiTinyMarginTop" />
+                            </VBox>
+                            <VBox class="invoiceCreateKpiTile sapUiTinyMarginBegin sapUiSmallMarginBottom">
+                                <Label text="{i18n>kpiQty}" design="Bold" />
+                                <Text text="{
+                                    parts: [{ path: 'invoiceItem>/IrMenge' }, { path: 'invoiceItem>/Meins' }],
+                                    formatter: '.formatQty'
+                                }" class="invoiceCreateKpiValue sapUiTinyMarginTop" />
+                            </VBox>
+                        </HBox>
+                    </HBox>
+                </VBox>
+
+                <!-- 3-Way Matching flow -->
+                <VBox class="threeWayMatchSection sapUiSmallMarginBottom">
+                    <Title text="{i18n>sectionMatchFlow}" level="H5" class="threeWayMatchSectionTitle sapUiSmallMarginBottom" />
+                    <HBox class="threeWayMatchFlow" alignItems="Stretch" wrap="Wrap">
+                        <VBox class="threeWayMatchFlowCard">
+                            <HBox alignItems="Center" justifyContent="SpaceBetween" class="threeWayMatchFlowCardHeader">
+                                <HBox alignItems="Center">
+                                    <core:Icon src="sap-icon://flight" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                                    <Title text="{i18n>flowStepPo}" level="H5" />
+                                </HBox>
+                                <ObjectStatus text="{matchView>/po/status}" state="{matchView>/po/statusState}" />
+                            </HBox>
+                            <VBox class="threeWayMatchFlowCardBody">
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelPoNo}" />
+                                    <Text text="{matchView>/po/docNo}" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelPoDate}" />
+                                    <Text text="{matchView>/po/docDate}" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelAmount}" />
+                                    <Text text="{
+                                        parts: [{ path: 'matchView>/po/amount' }, { path: 'matchView>/po/waers' }],
+                                        formatter: '.formatAmount'
+                                    }" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelQty}" />
+                                    <Text text="{
+                                        parts: [{ path: 'matchView>/po/qty' }, { path: 'matchView>/po/meins' }],
+                                        formatter: '.formatQty'
+                                    }" />
+                                </HBox>
+                            </VBox>
+                        </VBox>
+
+                        <VBox class="threeWayMatchFlowConnector" alignItems="Center" justifyContent="Center">
+                            <core:Icon src="sap-icon://arrow-right" size="1.5rem" color="#6a6d70" />
+                        </VBox>
+
+                        <VBox class="threeWayMatchFlowCard">
+                            <HBox alignItems="Center" justifyContent="SpaceBetween" class="threeWayMatchFlowCardHeader">
+                                <HBox alignItems="Center">
+                                    <core:Icon src="sap-icon://shipping-status" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                                    <Title text="{i18n>flowStepGr}" level="H5" />
+                                </HBox>
+                                <ObjectStatus text="{matchView>/gr/status}" state="{matchView>/gr/statusState}" />
+                            </HBox>
+                            <VBox class="threeWayMatchFlowCardBody">
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelGrNo}" />
+                                    <Text text="{matchView>/gr/docNo}" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelGrDate}" />
+                                    <Text text="{matchView>/gr/docDate}" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelGrAmountUsd}" />
+                                    <Text text="{
+                                        parts: [
+                                            { path: 'matchView>/gr/amountFx' },
+                                            { path: 'matchView>/gr/amountLocal' },
+                                            { path: 'matchView>/gr/fxRate' },
+                                            { path: 'matchView>/gr/waersFx' }
+                                        ],
+                                        formatter: '.formatGrAmountFx'
+                                    }" class="threeWayMatchEmphasized" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelFxRateDate}" />
+                                    <Text text="{matchView>/gr/fxRateDate}" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelFxRate}" />
+                                    <Text text="{
+                                        parts: [
+                                            { path: 'matchView>/gr/fxRate' },
+                                            { path: 'matchView>/gr/waersFx' },
+                                            { path: 'matchView>/gr/waersLocal' }
+                                        ],
+                                        formatter: '.formatFxRatePair'
+                                    }" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelGrAmountLocal}" />
+                                    <Text text="{
+                                        parts: [{ path: 'matchView>/gr/amountLocal' }, { path: 'matchView>/gr/waersLocal' }],
+                                        formatter: '.formatAmount'
+                                    }" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelQty}" />
+                                    <Text text="{
+                                        parts: [{ path: 'matchView>/gr/qty' }, { path: 'matchView>/gr/meins' }],
+                                        formatter: '.formatQty'
+                                    }" />
+                                </HBox>
+                            </VBox>
+                        </VBox>
+
+                        <VBox class="threeWayMatchFlowConnector" alignItems="Center" justifyContent="Center">
+                            <core:Icon src="sap-icon://arrow-right" size="1.5rem" color="#6a6d70" />
+                        </VBox>
+
+                        <VBox class="threeWayMatchFlowCard">
+                            <HBox alignItems="Center" justifyContent="SpaceBetween" class="threeWayMatchFlowCardHeader">
+                                <HBox alignItems="Center">
+                                    <core:Icon src="sap-icon://money-bills" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                                    <Title text="{i18n>flowStepInv}" level="H5" />
+                                </HBox>
+                                <ObjectStatus text="{matchView>/inv/status}" state="{matchView>/inv/statusState}" />
+                            </HBox>
+                            <VBox class="threeWayMatchFlowCardBody">
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelIvNo}" />
+                                    <Text text="{matchView>/inv/docNo}" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelIvDate}" />
+                                    <Text text="{matchView>/inv/docDate}" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelAmount}" />
+                                    <Text text="{
+                                        parts: [{ path: 'matchView>/inv/amount' }, { path: 'matchView>/inv/waers' }],
+                                        formatter: '.formatAmount'
+                                    }" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelFxRateDate}" />
+                                    <Text text="{matchView>/inv/fxRateDate}" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelFxRate}" />
+                                    <Text text="{
+                                        parts: [
+                                            { path: 'matchView>/inv/fxRate' },
+                                            { path: 'matchView>/inv/waersFx' },
+                                            { path: 'matchView>/inv/waersLocal' }
+                                        ],
+                                        formatter: '.formatFxRatePair'
+                                    }" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelGrAmountUsd}" />
+                                    <Text text="{
+                                        parts: [
+                                            { path: 'matchView>/inv/amountLocal' },
+                                            { path: 'matchView>/inv/waersLocal' }
+                                        ],
+                                        formatter: '.formatAmount'
+                                    }" class="threeWayMatchEmphasized" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelQty}" />
+                                    <Text text="{
+                                        parts: [{ path: 'matchView>/inv/qty' }, { path: 'matchView>/inv/meins' }],
+                                        formatter: '.formatQty'
+                                    }" />
+                                </HBox>
+                            </VBox>
+                        </VBox>
+
+                        <VBox class="threeWayMatchFlowResult" alignItems="Center" justifyContent="Center">
+                            <core:Icon src="{= ${matchView>/summary/flowSuccess} ? 'sap-icon://accept' : 'sap-icon://pending' }"
+                                size="2.5rem"
+                                color="{= ${matchView>/summary/flowSuccess} ? '#107e3e' : '#6a6d70' }" />
+                            <Text text="{i18n>labelFlowResult}" class="threeWayMatchFlowResultText sapUiTinyMarginTop" />
+                        </VBox>
+                    </HBox>
+                </VBox>
+
+                <Panel headerText="{i18n>panelAmountCompare}" expandable="true" expanded="true" class="threeWayMatchPanel sapUiSmallMarginBottom">
+                    <Table items="{matchView>/amountRows}" growing="false" sticky="ColumnHeaders" class="threeWayMatchTable">
+                        <columns>
+                            <Column><Text text="" /></Column>
+                            <Column hAlign="End"><Text text="{i18n>colPo}" /></Column>
+                            <Column hAlign="End"><Text text="{i18n>colGr}" /></Column>
+                            <Column hAlign="End"><Text text="{i18n>colInv}" /></Column>
+                            <Column hAlign="Center" width="8rem"><Text text="{i18n>colCompareResult}" /></Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{matchView>label}" class="{= ${matchView>emphasized} ? 'threeWayMatchEmphasized' : '' }" />
+                                    <Text text="{matchView>po}" class="{= ${matchView>emphasized} ? 'threeWayMatchEmphasized' : '' }" />
+                                    <Text text="{matchView>gr}" class="{= ${matchView>emphasized} ? 'threeWayMatchEmphasized' : '' }" />
+                                    <Text text="{matchView>inv}" class="{= ${matchView>emphasized} ? 'threeWayMatchEmphasized' : '' }" />
+                                    <ObjectStatus text="{matchView>result}" state="{matchView>resultState}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </Panel>
+
+                <Panel headerText="{i18n>panelQtyCompare}" expandable="true" expanded="true" class="threeWayMatchPanel sapUiSmallMarginBottom">
+                    <Table items="{matchView>/qtyRows}" growing="false" sticky="ColumnHeaders" class="threeWayMatchTable">
+                        <columns>
+                            <Column><Text text="" /></Column>
+                            <Column hAlign="End"><Text text="{i18n>colPo}" /></Column>
+                            <Column hAlign="End"><Text text="{i18n>colGr}" /></Column>
+                            <Column hAlign="End"><Text text="{i18n>colInv}" /></Column>
+                            <Column hAlign="Center" width="8rem"><Text text="{i18n>colCompareResult}" /></Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{matchView>label}" class="{= ${matchView>emphasized} ? 'threeWayMatchEmphasized' : '' }" />
+                                    <Text text="{matchView>po}" class="{= ${matchView>emphasized} ? 'threeWayMatchEmphasized' : '' }" />
+                                    <Text text="{matchView>gr}" class="{= ${matchView>emphasized} ? 'threeWayMatchEmphasized' : '' }" />
+                                    <Text text="{matchView>inv}" class="{= ${matchView>emphasized} ? 'threeWayMatchEmphasized' : '' }" />
+                                    <ObjectStatus text="{matchView>result}" state="{matchView>resultState}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </Panel>
+
+                <Panel headerText="{i18n>panelOilFinalCompare}" expandable="true" expanded="true" class="threeWayMatchPanel sapUiSmallMarginBottom">
+                    <MessageStrip
+                        visible="{= !!${invoiceMetrics>/oilLoadError} }"
+                        text="{invoiceMetrics>/oilLoadError}"
+                        type="Warning"
+                        showIcon="true"
+                        class="sapUiSmallMarginBottom" />
+                    <graph:OilFinalCompareGraph id="oilFinalCompareGraph" />
+                </Panel>
+
+                <!-- Row 1: Header / Bill Ref / Verify -->
+                <VBox class="invoiceCreateGrid invoiceCreateGridRow1">
+                    <!-- Card: Invoice Header -->
+                    <VBox class="billDetailCard invoiceCardHeader">
+                        <HBox alignItems="Center" class="billDetailCardHeader">
+                            <core:Icon src="sap-icon://document-text" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                            <Title text="{i18n>cardInvoiceHeader}" level="H5" />
+                        </HBox>
+                        <VBox class="billDetailCardBody">
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelInvNo}" />
+                                <Text text="{invoiceHeader>/InvNo}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" alignItems="Center" class="billDetailFieldRow">
+                                <Label text="{i18n>labelGjahr}" />
+                                <Input value="{invoiceHeader>/Gjahr}" width="100%"
+                                    editable="{= !${viewState>/registered} }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" alignItems="Center" class="billDetailFieldRow">
+                                <Label text="{i18n>labelBudat}" />
+                                <DatePicker value="{invoiceHeader>/Budat}" displayFormat="yyyy-MM-dd"
+                                    valueFormat="yyyy-MM-dd" width="100%"
+                                    enabled="{= !${viewState>/registered} }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" alignItems="Center" class="billDetailFieldRow">
+                                <Label text="{i18n>labelBldat}" />
+                                <DatePicker value="{invoiceHeader>/Bldat}" displayFormat="yyyy-MM-dd"
+                                    valueFormat="yyyy-MM-dd" width="100%"
+                                    enabled="{= !${viewState>/registered} }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelBukrs}" />
+                                <Text text="{
+                                    parts: [
+                                        { path: 'invoiceHeader>/Bukrs' },
+                                        { path: 'invoiceHeader>/BukrsName' }
+                                    ],
+                                    formatter: '.formatBukrsWithName'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colVendor}" />
+                                <Text text="{invoiceHeader>/Lifnr}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colCurrency}" />
+                                <Text text="{invoiceHeader>/Waers}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelZwaers}" />
+                                <Text text="{invoiceHeader>/Zwaers}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" alignItems="Center" class="billDetailFieldRow">
+                                <Label text="{i18n>labelPaymentTerm}" />
+                                <Select selectedKey="{invoiceHeader>/Zterm}" width="100%"
+                                    enabled="{= !${viewState>/registered} }">
+                                    <core:Item key="Z000" text="Z000 · 0일 이내(즉시)" />
+                                    <core:Item key="Z030" text="Z030 · 30일 이내" />
+                                    <core:Item key="Z060" text="Z060 · 60일 이내" />
+                                </Select>
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" alignItems="Center" class="billDetailFieldRow">
+                                <Label text="{i18n>labelVendorInvDate}" />
+                                <DatePicker value="{invoiceHeader>/InvDat}" displayFormat="yyyy-MM-dd"
+                                    valueFormat="yyyy-MM-dd" width="100%"
+                                    enabled="{= !${viewState>/registered} }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" alignItems="Center" class="billDetailFieldRow">
+                                <Label text="{i18n>labelErdat}" />
+                                <DatePicker value="{invoiceHeader>/Erdat}" displayFormat="yyyy-MM-dd"
+                                    valueFormat="yyyy-MM-dd" width="100%"
+                                    enabled="{= !${viewState>/registered} }" />
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                    <!-- Card: Bill Reference -->
+                    <VBox class="billDetailCard invoiceCardBillRef">
+                        <HBox alignItems="Center" class="billDetailCardHeader">
+                            <core:Icon src="sap-icon://chain-link" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                            <Title text="{i18n>cardBillReference}" level="H5" />
+                        </HBox>
+                        <VBox class="billDetailCardBody">
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colInvNo}" />
+                                <Text text="{billRef>/InvNo}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colPoNo}" />
+                                <Text text="{billRef>/Ebeln}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colVendorName}" />
+                                <Text text="{billRef>/Name1}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colMaterial}" />
+                                <Text text="{path: 'billRef>/Matnr', formatter: '.formatMaterial'}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelTaxCode}" />
+                                <Text text="{billRef>/Mwskz}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelTaxDesc}" />
+                                <Text text="{path: 'billRef>/Mwskz', formatter: '.formatTaxCodeDesc'}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colOilPrice}" />
+                                <Text text="{
+                                    parts: [{ path: 'billRef>/Oilprice' }, { path: 'billRef>/Waers' }],
+                                    formatter: '.formatAmount'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colPremium}" />
+                                <Text text="{
+                                    parts: [{ path: 'billRef>/Premium' }, { path: 'billRef>/Waers' }],
+                                    formatter: '.formatAmount'
+                                }" />
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                    <!-- Card: Verification Summary -->
+                    <VBox class="billDetailCard invoiceCardVerify">
+                        <HBox alignItems="Center" class="billDetailCardHeader">
+                            <core:Icon src="sap-icon://validate" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                            <Title text="{i18n>cardVerifySummary}" level="H5" />
+                        </HBox>
+                        <VBox class="billDetailCardBody">
+                            <HBox justifyContent="SpaceBetween" alignItems="Center" class="billDetailFieldRow">
+                                <Label text="{i18n>cardUnitPriceVerify}" />
+                                <ObjectStatus text="{
+                                    path: 'invoiceMetrics>/unitPriceOk',
+                                    formatter: '.formatMatchVerifyStatus'
+                                }" state="{
+                                    path: 'invoiceMetrics>/unitPriceOk',
+                                    formatter: '.formatMatchVerifyState'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" alignItems="Center" class="billDetailFieldRow">
+                                <Label text="{i18n>cardDataIntegrity}" />
+                                <ObjectStatus text="{matchView>/summary/matchResult}"
+                                    state="{matchView>/summary/matchResultState}"
+                                    active="{= ${matchView>/summary/matchResultState} !== 'Success' }"
+                                    press=".onShowMatchIssueDetail" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" alignItems="Center" class="billDetailFieldRow">
+                                <Label text="{i18n>cardQtyVerify}" />
+                                <ObjectStatus text="{
+                                    path: 'invoiceMetrics>/qtyVerifyOk',
+                                    formatter: '.formatMatchVerifyStatus'
+                                }" state="{
+                                    path: 'invoiceMetrics>/qtyVerifyOk',
+                                    formatter: '.formatMatchVerifyState'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelDiffQty}" />
+                                <Text text="{
+                                    parts: [{ path: 'invoiceMetrics>/qtyDiff' }, { path: 'invoiceItem>/Meins' }],
+                                    formatter: '.formatQty'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelDiffAmount}" />
+                                <Text text="{
+                                    parts: [{ path: 'invoiceMetrics>/amountDiff' }, { path: 'invoiceItem>/Waers' }],
+                                    formatter: '.formatAmount'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelTaxAmount}" />
+                                <Text text="{
+                                    parts: [{ path: 'invoiceItem>/Wmwst' }, { path: 'invoiceItem>/Waers' }],
+                                    formatter: '.formatAmount'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" alignItems="Center" class="billDetailFieldRow">
+                                <Label text="{i18n>labelInternalInvStatus}" />
+                                <ObjectStatus text="{path: 'billRef>/IvZlspr', formatter: '.formatInternalStatus'}"
+                                    state="{path: 'billRef>/IvZlspr', formatter: '.formatInternalStatusState'}" />
+                            </HBox>
+                        </VBox>
+                    </VBox>
+                </VBox>
+
+                <!-- Info banner -->
+                <MessageStrip text="{i18n>invoiceCreateInfoBanner}" type="Information" showIcon="true" class="invoiceCreateBanner sapUiSmallMarginTop sapUiSmallMarginBottom" />
+
+                <!-- Row 2: Qty/Material / Amount / Approval -->
+                <VBox class="invoiceCreateGrid invoiceCreateGridRow2">
+                    <!-- Card: Qty / Material -->
+                    <VBox class="billDetailCard invoiceCardQty">
+                        <HBox alignItems="Center" class="billDetailCardHeader">
+                            <core:Icon src="sap-icon://product" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                            <Title text="{i18n>cardInvoiceQtyMaterial}" level="H5" />
+                        </HBox>
+                        <VBox class="billDetailCardBody">
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelInvItem}" />
+                                <Text text="{invoiceItem>/InvItem}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelRefPo}" />
+                                <Text text="{invoiceItem>/Ebeln}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelMatDoc}" />
+                                <Text text="{invoiceItem>/Mblnr}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelDocYear}" />
+                                <Text text="{invoiceItem>/Mjahr}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colMaterial}" />
+                                <Text text="{path: 'invoiceItem>/Matnr', formatter: '.formatMaterial'}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelGrQty}" />
+                                <Text text="{
+                                    parts: [{ path: 'invoiceItem>/GrMenge' }, { path: 'invoiceItem>/Meins' }],
+                                    formatter: '.formatQty'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelIrQty}" />
+                                <Text text="{
+                                    parts: [{ path: 'invoiceItem>/IrMenge' }, { path: 'invoiceItem>/Meins' }],
+                                    formatter: '.formatQty'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelDiffQty}" />
+                                <Text text="{
+                                    parts: [{ path: 'invoiceItem>/DiffQty' }, { path: 'invoiceItem>/Meins' }],
+                                    formatter: '.formatQty'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colUnit}" />
+                                <Text text="{path: 'invoiceItem>/Meins', formatter: '.formatUnit'}" />
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                    <!-- Card: Amount -->
+                    <VBox class="billDetailCard invoiceCardAmount">
+                        <HBox alignItems="Center" class="billDetailCardHeader">
+                            <core:Icon src="sap-icon://money-bills" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                            <Title text="{i18n>cardInvoiceAmount}" level="H5" />
+                        </HBox>
+                        <VBox class="billDetailCardBody">
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colAmount}" />
+                                <Text text="{
+                                    parts: [{ path: 'invoiceItem>/ItemAmt' }, { path: 'invoiceItem>/Waers' }],
+                                    formatter: '.formatAmount'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelItemAmtLocal}" wrapping="true" />
+                                <VBox alignItems="Start" class="invoiceAmountValueStack">
+                                    <Text text="{
+                                        parts: [{ path: 'invoiceItem>/ItemAmtD' }, { path: 'invoiceItem>/Zwaers' }],
+                                        formatter: '.formatAmount'
+                                    }" />
+                                    <Text text="{
+                                        parts: [{ path: 'invoiceItem>/ItemAmtD' }, { path: 'invoiceItem>/Zwaers' }],
+                                        formatter: '.formatLocalAmountForSap'
+                                    }" class="invoiceSapStorageHint" />
+                                </VBox>
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelBaseAmount}" wrapping="true" />
+                                <Text text="{
+                                    parts: [{ path: 'invoiceItem>/BaseAmt' }, { path: 'invoiceItem>/Waers' }],
+                                    formatter: '.formatAmount'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelBaseAmtLocal}" wrapping="true" />
+                                <VBox alignItems="Start" class="invoiceAmountValueStack">
+                                    <Text text="{
+                                        parts: [{ path: 'invoiceItem>/BaseAmtD' }, { path: 'invoiceItem>/Zwaers' }],
+                                        formatter: '.formatAmount'
+                                    }" />
+                                    <Text text="{
+                                        parts: [{ path: 'invoiceItem>/BaseAmtD' }, { path: 'invoiceItem>/Zwaers' }],
+                                        formatter: '.formatLocalAmountForSap'
+                                    }" class="invoiceSapStorageHint" />
+                                </VBox>
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelDiffAmount}" wrapping="true" />
+                                <Text text="{
+                                    parts: [{ path: 'invoiceItem>/DiffAmt' }, { path: 'invoiceItem>/Waers' }],
+                                    formatter: '.formatAmount'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelDiffAmtLocal}" wrapping="true" />
+                                <VBox alignItems="Start" class="invoiceAmountValueStack">
+                                    <Text text="{
+                                        parts: [{ path: 'invoiceItem>/DiffAmtD' }, { path: 'invoiceItem>/Zwaers' }],
+                                        formatter: '.formatAmount'
+                                    }" />
+                                    <Text text="{
+                                        parts: [{ path: 'invoiceItem>/DiffAmtD' }, { path: 'invoiceItem>/Zwaers' }],
+                                        formatter: '.formatLocalAmountForSap'
+                                    }" class="invoiceSapStorageHint" />
+                                </VBox>
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelTaxAmount}" wrapping="true" />
+                                <Text text="{
+                                    parts: [{ path: 'invoiceItem>/Wmwst' }, { path: 'invoiceItem>/Waers' }],
+                                    formatter: '.formatAmount'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelTaxLocal}" wrapping="true" />
+                                <VBox alignItems="Start" class="invoiceAmountValueStack">
+                                    <Text text="{
+                                        parts: [{ path: 'invoiceItem>/Hwste' }, { path: 'invoiceItem>/Zwaers' }],
+                                        formatter: '.formatAmount'
+                                    }" />
+                                    <Text text="{
+                                        parts: [{ path: 'invoiceItem>/Hwste' }, { path: 'invoiceItem>/Zwaers' }],
+                                        formatter: '.formatLocalAmountForSap'
+                                    }" class="invoiceSapStorageHint" />
+                                </VBox>
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colOilPrice}" />
+                                <Text text="{
+                                    parts: [{ path: 'invoiceItem>/Oilprice' }, { path: 'invoiceItem>/Waers' }],
+                                    formatter: '.formatAmount'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colPremium}" />
+                                <Text text="{
+                                    parts: [{ path: 'invoiceItem>/Premium' }, { path: 'invoiceItem>/Waers' }],
+                                    formatter: '.formatAmount'
+                                }" />
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                    <!-- Card: Approval / Processing -->
+                    <VBox class="billDetailCard invoiceCardApproval">
+                        <HBox alignItems="Center" class="billDetailCardHeader">
+                            <core:Icon src="sap-icon://approvals" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                            <Title text="{i18n>cardApprovalProcess}" level="H5" />
+                        </HBox>
+                        <VBox class="billDetailCardBody">
+                            <HBox justifyContent="SpaceBetween" alignItems="Center" class="billDetailFieldRow">
+                                <Label text="{i18n>labelInternalInvStatus}" />
+                                <ObjectStatus text="{path: 'billRef>/IvZlspr', formatter: '.formatInternalStatus'}"
+                                    state="{path: 'billRef>/IvZlspr', formatter: '.formatInternalStatusState'}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelTaxCode}" />
+                                <Text text="{path: 'invoiceItem>/Mwskz', formatter: '.formatTaxCode'}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelBukrs}" />
+                                <Text text="{
+                                    parts: [
+                                        { path: 'invoiceHeader>/Bukrs' },
+                                        { path: 'invoiceHeader>/BukrsName' }
+                                    ],
+                                    formatter: '.formatBukrsWithName'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelPaymentTerm}" />
+                                <Text text="{path: 'invoiceHeader>/Zterm', formatter: '.formatPaymentTerm'}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colVendor}" />
+                                <Text text="{invoiceHeader>/Lifnr}" />
+                            </HBox>
+                            <Text text="{i18n>invoiceVerifyHint}" visible="{= !${viewState>/registered} }"
+                                class="invoiceCreateHint sapUiSmallMarginTop" />
+                        </VBox>
+                    </VBox>
+                </VBox>
+            </VBox>
+        </content>
+        <footer>
+            <OverflowToolbar design="Footer" class="billDetailFooter invoiceCreateFooter">
+                <ToolbarSpacer />
+                <HBox alignItems="Center" class="invoiceFooterRefField sapUiTinyMarginEnd">
+                    <Label text="{i18n>labelApprovalStatusFooter}" class="invoiceFooterRefLabel" />
+                    <ObjectStatus text="{path: 'invoiceHeader>/Zlspr', formatter: '.formatApprovalStatus'}"
+                        state="{path: 'invoiceHeader>/Zlspr', formatter: '.formatApprovalStatusState'}"
+                        visible="{viewState>/registered}" />
+                    <Select selectedKey="{invoiceHeader>/Zlspr}" width="8rem"
+                        visible="{= !${viewState>/registered} }">
+                        <core:Item key="" text="{i18n>approvalNone}" />
+                        <core:Item key="A" text="{i18n>approvalApproved}" />
+                        <core:Item key="R" text="{i18n>approvalRejected}" />
+                    </Select>
+                </HBox>
+                <Button text="{viewState>/actionText}" icon="{viewState>/actionIcon}" type="Emphasized"
+                    visible="{= !${viewState>/registered} }"
+                    press=".onInvoiceFooterAction" class="sapUiTinyMarginBegin" />
+                <Button text="{i18n>btnDeleteInvoice}" icon="sap-icon://delete" type="Reject"
+                    visible="{viewState>/registered}"
+                    press=".onDeleteInvoice" class="sapUiTinyMarginBegin" />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

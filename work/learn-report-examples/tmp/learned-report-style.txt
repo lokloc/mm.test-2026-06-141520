@@ -1,0 +1,67 @@
+SAP final report example learning notes
+
+Sources
+- PDF: SAP 개발 프로젝트 최종 평가_이수민.pdf, 16 pages
+- PPTX: CODE 1기 개별 평가 레포트 예시.pptx, 26 slides
+
+Shared report structure
+- Cover: simple SAP/CODE branding, title, team/class/name.
+- Table of contents: 3 sections.
+- Section divider slides: very sparse, large numbered section title.
+- Program overview slide: one main screenshot on the left, 3 short feature cards on the right.
+- Program flow/detail slides: SAP/UI screenshots or code captures paired with concise explanation boxes.
+- Logic explanation slides: code screenshots dominate, with 2-3 numbered logic callouts at the bottom or side.
+- Feedback/improvement slide: before vs after or mid-test vs final-test comparison.
+- Closing slide: minimal thank-you page.
+
+PDF example content arc
+- Title: SAP development project final individual evaluation.
+- Sections:
+  1. ABAP program introduction: journal voucher inquiry program.
+  2. UI5 program introduction: purchase debt approval program.
+  3. Mid-test feedback reflection status.
+- Detailed page pattern:
+  - "Program flow - [function]" pages explain user flow and visible UI behavior.
+  - "Logic explanation - [function] logic" pages explain implementation decisions and core validation.
+  - Screenshots are real SAP GUI/Fiori screens, not decorative images.
+  - Each page emphasizes what was implemented, how the user interacts, and what business/validation value it provides.
+
+PPTX example content arc
+- Title: final individual evaluation.
+- Sections:
+  1. ABAP program introduction: receiving inspection program.
+  2. UI5/Fiori program introduction: purchase order/material management program.
+  3. Mid-test feedback elements.
+- More implementation-heavy than the PDF:
+  - Many slides combine screen captures with code snippets.
+  - Detailed steps: search, register, validate, approve, expand/collapse, factory info, production request, inventory inquiry.
+  - Feedback slide maps mid-test issues to final-test improvements.
+
+Visual style to preserve for generated PPTX
+- Canvas: 16:9, white/light background.
+- Branding: SAP logo at top-left, CODE logo at top-right on PPTX; SAP top-right on PDF style.
+- Typography: dark navy section titles, medium blue accents.
+- Layout:
+  - Thin top border or small blue title marker.
+  - Large screenshots in 50-65% of the slide.
+  - Explanation cards with subtle border, light fill, and numbered/icon markers.
+  - Bottom callout boxes for code explanation slides.
+  - Minimal decoration, often a light grey corner triangle in PPTX.
+- Tone:
+  - Korean formal technical report style.
+  - Explain features with "조회/등록/검증/승인/처리/저장/반영" verbs.
+  - Keep bullets functional and evidence-based.
+
+Likely output strategy when user provides program
+- Use the PPTX example as the visual template if possible.
+- Build a report around:
+  1. Cover
+  2. Table of contents
+  3. ABAP or backend section divider if relevant
+  4. Program overview
+  5. User flow pages by major function
+  6. Logic explanation pages for validations, DB updates, APIs, state handling
+  7. UI5/Fiori/frontend section if relevant
+  8. Feedback/improvement or testing result slide
+  9. Closing
+- Need user-provided program screenshots/code/description to make concrete slides.

@@ -1,0 +1,171 @@
+{
+  "_version": "1.76.0",
+  "sap.app": {
+    "id": "code.t1.mm.test",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.19.3",
+      "toolsId": "21e6760e-269d-4a32-9a80-275b83f7ea9d"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZGWD1MM0003_SRV/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.148.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {},
+        "sap.ui.layout": {},
+        "sap.suite.ui.commons": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "code.t1.mm.test.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "code.t1.mm.test.view",
+        "async": true,
+        "viewPath": "code.t1.mm.test.view"
+      },
+      "routes": [
+        {
+          "name": "RouteDateSetup",
+          "pattern": "",
+          "target": [
+            "TargetDateSetup"
+          ]
+        },
+        {
+          "name": "RouteMain",
+          "pattern": "main/:?query:",
+          "target": [
+            "TargetMain"
+          ]
+        },
+        {
+          "name": "RouteTest",
+          "pattern": "test",
+          "target": [
+            "TargetTest"
+          ]
+        },
+        {
+          "name": "RouteBillDetail",
+          "pattern": "bill/{InvNo}",
+          "target": [
+            "TargetBillDetail"
+          ]
+        },
+        {
+          "name": "RouteInvoiceCreate",
+          "pattern": "invoice/{InvNo}",
+          "target": [
+            "TargetInvoiceCreate"
+          ]
+        },
+        {
+          "name": "RouteThreeWayMatch",
+          "pattern": "matching/{InvNo}",
+          "target": [
+            "TargetInvoiceCreate"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetDateSetup": {
+          "id": "DateSetup",
+          "name": "DateSetup"
+        },
+        "TargetMain": {
+          "id": "Main",
+          "name": "Main"
+        },
+        "TargetTest": {
+          "id": "Test",
+          "name": "Test"
+        },
+        "TargetBillDetail": {
+          "id": "BillDetail",
+          "name": "BillDetail"
+        },
+        "TargetInvoiceCreate": {
+          "id": "InvoiceCreate",
+          "name": "InvoiceCreate"
+        },
+        "TargetThreeWayMatch": {
+          "id": "ThreeWayMatch",
+          "name": "ThreeWayMatch"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "code.t1.mm.test.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}

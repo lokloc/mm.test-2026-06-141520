@@ -1,0 +1,9 @@
+<mvc:View controllerName="code.t1.mm.test.controller.Test"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    <Page id="testPage" title="{i18n>testTitle}">
+        <content>
+            <Text text="Test view" class="sapUiMediumMargin" />
+        </content>
+    </Page>
+</mvc:View>

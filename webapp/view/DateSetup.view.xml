@@ -1,0 +1,36 @@
+<mvc:View controllerName="code.t1.mm.test.controller.DateSetup"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.ui.layout.form">
+    <Page id="dateSetupPage" title="{i18n>dateSetupTitle}" showNavButton="false"
+        class="dateSetupPage sapUiNoContentPadding" backgroundDesign="Solid">
+        <content>
+            <VBox class="dateSetupRoot sapUiResponsiveContentPadding" alignItems="Center" justifyContent="Center">
+                <VBox class="dateSetupCard" width="100%">
+                    <Title text="{i18n>dateSetupHeading}" level="H3" class="sapUiSmallMarginBottom" />
+                    <Text text="{i18n>dateSetupDesc}" class="dateSetupDesc sapUiMediumMarginBottom" />
+                    <f:SimpleForm editable="true" layout="ResponsiveGridLayout"
+                        labelSpanXL="4" labelSpanL="4" labelSpanM="4" labelSpanS="12"
+                        adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0"
+                        columnsXL="1" columnsL="1" columnsM="1" singleContainerFullSize="false">
+                        <f:content>
+                            <Label text="{i18n>dateSetupDateLabel}" required="true" />
+                            <DatePicker id="dpAppDate" value="{dateSetup>/date}"
+                                displayFormat="yyyy.MM.dd" valueFormat="yyyy-MM-dd"
+                                placeholder="{i18n>dateSetupDatePlaceholder}" />
+
+                            <Label text="{i18n>dateSetupTimeLabel}" required="true" />
+                            <TimePicker id="tpAppTime" value="{dateSetup>/time}"
+                                displayFormat="HH:mm:ss" valueFormat="HH:mm:ss"
+                                placeholder="{i18n>dateSetupTimePlaceholder}" />
+                        </f:content>
+                    </f:SimpleForm>
+                    <HBox justifyContent="End" class="sapUiMediumMarginTop">
+                        <Button id="btnDateSetupStart" text="{i18n>dateSetupStartBtn}" type="Emphasized"
+                            icon="sap-icon://accept" press=".onStart" />
+                    </HBox>
+                </VBox>
+            </VBox>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,293 @@
+<mvc:View controllerName="code.t1.mm.test.controller.ThreeWayMatch"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="threeWayMatchPage" showNavButton="false" enableScrolling="true" floatingFooter="true" backgroundDesign="List" class="threeWayMatchPage sapUiNoContentPadding">
+        <customHeader>
+            <Bar design="Header" class="pageTopBar">
+                <contentLeft>
+                    <Breadcrumbs currentLocationText="{i18n>threeWayMatchTitle}">
+                        <links>
+                            <Link text="{i18n>billTitle}" press=".onNavMain" class="pageBreadcrumbLink" />
+                            <Link text="{i18n>billDetailTitle}" press=".onNavBillDetail" class="pageBreadcrumbLink" />
+                            <Link text="{i18n>invoiceCreateTitle}" press=".onNavInvoiceCreate" class="pageBreadcrumbLink" />
+                        </links>
+                    </Breadcrumbs>
+                </contentLeft>
+                <contentRight>
+                    <Button icon="sap-icon://nav-back" type="Transparent" tooltip="{i18n>btnBack}"
+                        press=".onNavBack" class="pageHeaderBackBtn" />
+                </contentRight>
+            </Bar>
+        </customHeader>
+        <content>
+            <VBox class="threeWayMatchRoot sapUiResponsiveContentPadding">
+                <!-- Title -->
+                <VBox class="threeWayMatchHero sapUiSmallMarginBottom">
+                    <HBox alignItems="Start" justifyContent="SpaceBetween" wrap="Wrap">
+                        <VBox class="sapUiSmallMarginBottom">
+                            <Title text="{i18n>threeWayMatchTitle}" level="H2" class="threeWayMatchHeroTitle" />
+                            <Text text="{i18n>threeWayMatchDesc}" class="threeWayMatchDesc sapUiTinyMarginTop" />
+                        </VBox>
+                        <HBox wrap="Wrap" justifyContent="End" class="threeWayMatchKpiRow">
+                            <VBox class="threeWayMatchKpiTile">
+                                <Label text="{i18n>labelOverallStatus}" design="Bold" />
+                                <ObjectStatus text="{matchView>/summary/overallStatus}"
+                                    state="{matchView>/summary/overallState}"
+                                    icon="{= ${matchView>/summary/overallState} === 'Success' ? 'sap-icon://accept' : 'sap-icon://alert' }" />
+                            </VBox>
+                            <VBox class="threeWayMatchKpiTile">
+                                <Label text="{i18n>labelMatchResult}" design="Bold" />
+                                <ObjectStatus text="{matchView>/summary/matchResult}"
+                                    state="{matchView>/summary/matchResultState}" />
+                            </VBox>
+                            <VBox class="threeWayMatchKpiTile">
+                                <Label text="{i18n>labelDiffAmount}" design="Bold" />
+                                <Text text="{
+                                    parts: [{ path: 'matchView>/summary/diffAmount' }, { path: 'matchView>/inv/waers' }],
+                                    formatter: '.formatAmount'
+                                }" class="threeWayMatchKpiValue" />
+                            </VBox>
+                            <VBox class="threeWayMatchKpiTile">
+                                <Label text="{i18n>labelDiffQty}" design="Bold" />
+                                <Text text="{
+                                    parts: [{ path: 'matchView>/summary/diffQty' }, { path: 'matchView>/inv/meins' }],
+                                    formatter: '.formatQty'
+                                }" class="threeWayMatchKpiValue" />
+                            </VBox>
+                        </HBox>
+                    </HBox>
+                </VBox>
+
+                <!-- Process flow -->
+                <VBox class="threeWayMatchSection sapUiSmallMarginBottom">
+                    <Title text="{i18n>sectionMatchFlow}" level="H5" class="threeWayMatchSectionTitle sapUiSmallMarginBottom" />
+                    <HBox class="threeWayMatchFlow" alignItems="Stretch" wrap="Wrap">
+                        <VBox class="threeWayMatchFlowCard">
+                            <HBox alignItems="Center" justifyContent="SpaceBetween" class="threeWayMatchFlowCardHeader">
+                                <HBox alignItems="Center">
+                                    <core:Icon src="sap-icon://flight" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                                    <Title text="{i18n>flowStepPo}" level="H5" />
+                                </HBox>
+                                <ObjectStatus text="{matchView>/po/status}" state="{matchView>/po/statusState}" />
+                            </HBox>
+                            <VBox class="threeWayMatchFlowCardBody">
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelPoNo}" />
+                                    <Text text="{matchView>/po/docNo}" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelPoDate}" />
+                                    <Text text="{matchView>/po/docDate}" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelAmount}" />
+                                    <Text text="{
+                                        parts: [{ path: 'matchView>/po/amount' }, { path: 'matchView>/po/waers' }],
+                                        formatter: '.formatAmount'
+                                    }" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelQty}" />
+                                    <Text text="{
+                                        parts: [{ path: 'matchView>/po/qty' }, { path: 'matchView>/po/meins' }],
+                                        formatter: '.formatQty'
+                                    }" />
+                                </HBox>
+                            </VBox>
+                        </VBox>
+
+                        <VBox class="threeWayMatchFlowConnector" alignItems="Center" justifyContent="Center">
+                            <core:Icon src="sap-icon://arrow-right" size="1.5rem" color="#6a6d70" />
+                        </VBox>
+
+                        <VBox class="threeWayMatchFlowCard">
+                            <HBox alignItems="Center" justifyContent="SpaceBetween" class="threeWayMatchFlowCardHeader">
+                                <HBox alignItems="Center">
+                                    <core:Icon src="sap-icon://shipping-status" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                                    <Title text="{i18n>flowStepGr}" level="H5" />
+                                </HBox>
+                                <ObjectStatus text="{matchView>/gr/status}" state="{matchView>/gr/statusState}" />
+                            </HBox>
+                            <VBox class="threeWayMatchFlowCardBody">
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelGrNo}" />
+                                    <Text text="{matchView>/gr/docNo}" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelGrDate}" />
+                                    <Text text="{matchView>/gr/docDate}" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelGrAmountUsd}" />
+                                    <Text text="{
+                                        parts: [
+                                            { path: 'matchView>/gr/amountLocal' },
+                                            { path: 'matchView>/gr/fxRate' },
+                                            { path: 'matchView>/gr/waersFx' }
+                                        ],
+                                        formatter: '.formatGrFxAmount'
+                                    }" class="threeWayMatchEmphasized" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelFxRateDate}" />
+                                    <Text text="{matchView>/gr/fxRateDate}" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelFxRate}" />
+                                    <Text text="{
+                                        parts: [
+                                            { path: 'matchView>/gr/fxRate' },
+                                            { path: 'matchView>/gr/waersFx' },
+                                            { path: 'matchView>/gr/waersLocal' }
+                                        ],
+                                        formatter: '.formatFxRatePair'
+                                    }" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelGrAmountLocal}" />
+                                    <Text text="{
+                                        parts: [{ path: 'matchView>/gr/amountLocal' }, { path: 'matchView>/gr/waersLocal' }],
+                                        formatter: '.formatAmount'
+                                    }" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelQty}" />
+                                    <Text text="{
+                                        parts: [{ path: 'matchView>/gr/qty' }, { path: 'matchView>/gr/meins' }],
+                                        formatter: '.formatQty'
+                                    }" />
+                                </HBox>
+                            </VBox>
+                        </VBox>
+
+                        <VBox class="threeWayMatchFlowConnector" alignItems="Center" justifyContent="Center">
+                            <core:Icon src="sap-icon://arrow-right" size="1.5rem" color="#6a6d70" />
+                        </VBox>
+
+                        <VBox class="threeWayMatchFlowCard">
+                            <HBox alignItems="Center" justifyContent="SpaceBetween" class="threeWayMatchFlowCardHeader">
+                                <HBox alignItems="Center">
+                                    <core:Icon src="sap-icon://money-bills" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                                    <Title text="{i18n>flowStepInv}" level="H5" />
+                                </HBox>
+                                <ObjectStatus text="{matchView>/inv/status}" state="{matchView>/inv/statusState}" />
+                            </HBox>
+                            <VBox class="threeWayMatchFlowCardBody">
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelInvNo}" />
+                                    <Text text="{matchView>/inv/docNo}" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelInvDate}" />
+                                    <Text text="{matchView>/inv/docDate}" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelAmount}" />
+                                    <Text text="{
+                                        parts: [{ path: 'matchView>/inv/amount' }, { path: 'matchView>/inv/waers' }],
+                                        formatter: '.formatAmount'
+                                    }" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelFxRateDate}" />
+                                    <Text text="{matchView>/inv/fxRateDate}" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelFxRate}" />
+                                    <Text text="{
+                                        parts: [
+                                            { path: 'matchView>/inv/fxRate' },
+                                            { path: 'matchView>/inv/waersFx' },
+                                            { path: 'matchView>/inv/waersLocal' }
+                                        ],
+                                        formatter: '.formatFxRatePair'
+                                    }" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelGrAmountUsd}" />
+                                    <Text text="{
+                                        parts: [
+                                            { path: 'matchView>/inv/amountLocal' },
+                                            { path: 'matchView>/inv/waersLocal' }
+                                        ],
+                                        formatter: '.formatAmount'
+                                    }" class="threeWayMatchEmphasized" />
+                                </HBox>
+                                <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                    <Label text="{i18n>labelQty}" />
+                                    <Text text="{
+                                        parts: [{ path: 'matchView>/inv/qty' }, { path: 'matchView>/inv/meins' }],
+                                        formatter: '.formatQty'
+                                    }" />
+                                </HBox>
+                            </VBox>
+                        </VBox>
+
+                        <VBox class="threeWayMatchFlowResult" alignItems="Center" justifyContent="Center">
+                            <core:Icon src="{= ${matchView>/summary/flowSuccess} ? 'sap-icon://accept' : 'sap-icon://pending' }"
+                                size="2.5rem"
+                                color="{= ${matchView>/summary/flowSuccess} ? '#107e3e' : '#6a6d70' }" />
+                            <Text text="{i18n>labelFlowResult}" class="threeWayMatchFlowResultText sapUiTinyMarginTop" />
+                        </VBox>
+                    </HBox>
+                </VBox>
+
+                <!-- Amount comparison -->
+                <Panel headerText="{i18n>panelAmountCompare}" expandable="true" expanded="true" class="threeWayMatchPanel sapUiSmallMarginBottom">
+                    <Table id="amountCompareTable" items="{matchView>/amountRows}" growing="false" sticky="ColumnHeaders" class="threeWayMatchTable">
+                        <columns>
+                            <Column><Text text="" /></Column>
+                            <Column hAlign="End"><Text text="{i18n>colPo}" /></Column>
+                            <Column hAlign="End"><Text text="{i18n>colGr}" /></Column>
+                            <Column hAlign="End"><Text text="{i18n>colInv}" /></Column>
+                            <Column hAlign="Center" width="8rem"><Text text="{i18n>colCompareResult}" /></Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{matchView>label}" class="{= ${matchView>emphasized} ? 'threeWayMatchEmphasized' : '' }" />
+                                    <Text text="{matchView>po}" class="{= ${matchView>emphasized} ? 'threeWayMatchEmphasized' : '' }" />
+                                    <Text text="{matchView>gr}" class="{= ${matchView>emphasized} ? 'threeWayMatchEmphasized' : '' }" />
+                                    <Text text="{matchView>inv}" class="{= ${matchView>emphasized} ? 'threeWayMatchEmphasized' : '' }" />
+                                    <ObjectStatus text="{matchView>result}" state="{matchView>resultState}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </Panel>
+
+                <!-- Quantity comparison -->
+                <Panel headerText="{i18n>panelQtyCompare}" expandable="true" expanded="true" class="threeWayMatchPanel">
+                    <Table id="qtyCompareTable" items="{matchView>/qtyRows}" growing="false" sticky="ColumnHeaders" class="threeWayMatchTable">
+                        <columns>
+                            <Column><Text text="" /></Column>
+                            <Column hAlign="End"><Text text="{i18n>colPo}" /></Column>
+                            <Column hAlign="End"><Text text="{i18n>colGr}" /></Column>
+                            <Column hAlign="End"><Text text="{i18n>colInv}" /></Column>
+                            <Column hAlign="Center" width="8rem"><Text text="{i18n>colCompareResult}" /></Column>
+                        </columns>
+                        <items>
+                            <ColumnListItem>
+                                <cells>
+                                    <Text text="{matchView>label}" class="{= ${matchView>emphasized} ? 'threeWayMatchEmphasized' : '' }" />
+                                    <Text text="{matchView>po}" class="{= ${matchView>emphasized} ? 'threeWayMatchEmphasized' : '' }" />
+                                    <Text text="{matchView>gr}" class="{= ${matchView>emphasized} ? 'threeWayMatchEmphasized' : '' }" />
+                                    <Text text="{matchView>inv}" class="{= ${matchView>emphasized} ? 'threeWayMatchEmphasized' : '' }" />
+                                    <ObjectStatus text="{matchView>result}" state="{matchView>resultState}" />
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </Panel>
+            </VBox>
+        </content>
+        <footer>
+            <OverflowToolbar design="Footer" class="billDetailFooter">
+                <ToolbarSpacer />
+                <Button text="{i18n>btnShowMismatch}" icon="sap-icon://filter" type="Transparent" press=".onShowMismatch" />
+                <Button text="{i18n>btnProceedRegister}" icon="sap-icon://feeder-arrow" type="Emphasized" press=".onProceedRegister" class="sapUiTinyMarginBegin" />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>

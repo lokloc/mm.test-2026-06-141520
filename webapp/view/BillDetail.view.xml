@@ -1,0 +1,267 @@
+<mvc:View controllerName="code.t1.mm.test.controller.BillDetail"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Page id="billDetailPage" showNavButton="false" enableScrolling="true" floatingFooter="true" backgroundDesign="List" class="billDetailPage sapUiNoContentPadding">
+        <customHeader>
+            <Bar design="Header" class="pageTopBar">
+                <contentLeft>
+                    <Breadcrumbs currentLocationText="{i18n>billDetailTitle}">
+                        <links>
+                            <Link text="{i18n>billTitle}" press=".onNavBack" class="pageBreadcrumbLink" />
+                        </links>
+                    </Breadcrumbs>
+                </contentLeft>
+                <contentRight>
+                    <Button icon="sap-icon://nav-back" type="Transparent" tooltip="{i18n>btnBack}"
+                        press=".onNavBack" class="pageHeaderBackBtn" />
+                </contentRight>
+            </Bar>
+        </customHeader>
+        <content>
+            <VBox class="billDetailRoot sapUiResponsiveContentPadding">
+                <!-- Hero header -->
+                <VBox class="billDetailHero sapUiSmallMarginBottom">
+                    <HBox alignItems="Start" justifyContent="SpaceBetween" wrap="Wrap">
+                        <VBox class="sapUiSmallMarginBottom">
+                            <HBox alignItems="Center" wrap="Wrap">
+                                <Title text="{InvNo}" level="H2" class="billDetailHeroTitle sapUiTinyMarginEnd" />
+                                <ObjectStatus text="{path: 'IvZlspr', formatter: '.formatInvoiceStatus'}"
+                                    state="{path: 'IvZlspr', formatter: '.formatInvoiceStatusState'}"
+                                    class="billDetailStatusBadge" />
+                            </HBox>
+                            <Text text="{Lifnr} · {Name1}" class="billDetailVendor sapUiTinyMarginTop" />
+                        </VBox>
+                        <HBox wrap="Wrap" justifyContent="End" class="billDetailKpiRow">
+                            <VBox class="billDetailKpiTile sapUiTinyMarginBegin sapUiSmallMarginBottom">
+                                <Label text="{i18n>kpiAmount}" design="Bold" />
+                                <ObjectNumber number="{
+                                    path: 'TotalAmt',
+                                    type: 'sap.ui.model.type.Float',
+                                    formatOptions: { minFractionDigits: 2, maxFractionDigits: 2 }
+                                }" unit="{Waers}" emphasized="true" class="sapUiTinyMarginTop" />
+                            </VBox>
+                            <VBox class="billDetailKpiTile sapUiTinyMarginBegin sapUiSmallMarginBottom">
+                                <Label text="{i18n>kpiQty}" design="Bold" />
+                                <Text text="{
+                                    parts: [
+                                        { path: 'TotalQty' },
+                                        { path: 'Meins' }
+                                    ],
+                                    formatter: '.formatQty'
+                                }" class="billDetailKpiValue sapUiTinyMarginTop" />
+                            </VBox>
+                            <VBox class="billDetailKpiTile sapUiTinyMarginBegin sapUiSmallMarginBottom">
+                                <Label text="{i18n>kpiUnitPrice}" design="Bold" />
+                                <Text text="{
+                                    parts: [
+                                        { path: 'TotalAmt' },
+                                        { path: 'TotalQty' },
+                                        { path: 'Waers' }
+                                    ],
+                                    formatter: '.formatUnitPrice'
+                                }" class="billDetailKpiValue sapUiTinyMarginTop" />
+                            </VBox>
+                            <VBox class="billDetailKpiTile sapUiTinyMarginBegin sapUiSmallMarginBottom">
+                                <Label text="{i18n>labelTaxAmount}" design="Bold" />
+                                <ObjectNumber number="{
+                                    path: 'Wmwst',
+                                    type: 'sap.ui.model.type.Float',
+                                    formatOptions: { minFractionDigits: 2, maxFractionDigits: 2 }
+                                }" unit="{Waers}" class="sapUiTinyMarginTop" />
+                            </VBox>
+                        </HBox>
+                    </HBox>
+                </VBox>
+
+                <!-- 6 info cards: CSS Grid 3×2 fixed layout -->
+                <VBox class="invoiceDetailGrid">
+                    <!-- Card 1: Basic info -->
+                    <VBox class="billDetailCard invoiceCardBasic">
+                        <HBox alignItems="Center" class="billDetailCardHeader">
+                            <core:Icon src="sap-icon://document" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                            <Title text="{i18n>cardBasicInfo}" level="H5" />
+                        </HBox>
+                        <VBox class="billDetailCardBody">
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colInvDate}" />
+                                <Text text="{path: 'InvDat', formatter: '.formatInvDate'}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelPaymentTerm}" />
+                                <Text text="{path: 'Zterm', formatter: '.formatPaymentTerm'}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelTaxCode}" />
+                                <Text text="{path: 'Mwskz', formatter: '.formatTaxCode'}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colCurrency}" />
+                                <Text text="{Waers}" />
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                    <!-- Card 2: Purchase / Vendor -->
+                    <VBox class="billDetailCard invoiceCardVendor">
+                        <HBox alignItems="Center" class="billDetailCardHeader">
+                            <core:Icon src="sap-icon://building" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                            <Title text="{i18n>cardVendorInfo}" level="H5" />
+                        </HBox>
+                        <VBox class="billDetailCardBody">
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colVendor}" />
+                                <Text text="{Lifnr}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colVendorName}" />
+                                <Text text="{Name1}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colPoNo}" />
+                                <Text text="{billItem>/Ebeln}" />
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                    <!-- Card 3: Oil item -->
+                    <VBox class="billDetailCard invoiceCardItem">
+                        <HBox alignItems="Center" class="billDetailCardHeader">
+                            <core:Icon src="sap-icon://lab" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                            <Title text="{i18n>cardOilItem}" level="H5" />
+                        </HBox>
+                        <VBox class="billDetailCardBody">
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colMaterial}" />
+                                <Text text="{path: 'billItem>/Matnr', formatter: '.formatMaterial'}" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>kpiQty}" />
+                                <Text text="{
+                                    parts: [
+                                        { path: 'billItem>/Menge' },
+                                        { path: 'billItem>/Meins' }
+                                    ],
+                                    formatter: '.formatQty'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colOilPrice}" />
+                                <Text text="{
+                                    parts: [
+                                        { path: 'billItem>/Oilprice' },
+                                        { path: 'billItem>/Waers' }
+                                    ],
+                                    formatter: '.formatAmount'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colPremium}" />
+                                <Text text="{
+                                    parts: [
+                                        { path: 'billItem>/Premium' },
+                                        { path: 'billItem>/Waers' }
+                                    ],
+                                    formatter: '.formatAmount'
+                                }" />
+                            </HBox>
+                        </VBox>
+                    </VBox>
+
+                    <!-- Card 4: Amount verification -->
+                    <VBox class="billDetailCard invoiceCardAmount">
+                        <HBox alignItems="Center" class="billDetailCardHeader">
+                            <core:Icon src="sap-icon://money-bills" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                            <Title text="{i18n>cardAmountVerify}" level="H5" />
+                        </HBox>
+                        <VBox class="billDetailCardBody">
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>colAmount}" />
+                                <Text text="{
+                                    parts: [{ path: 'TotalAmt' }, { path: 'Waers' }],
+                                    formatter: '.formatAmount'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelCalcAmount}" />
+                                <Text text="{
+                                    parts: [{ path: 'detailMetrics>/calcAmount' }, { path: 'Waers' }],
+                                    formatter: '.formatAmount'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelDiffAmount}" />
+                                <Text text="{
+                                    parts: [{ path: 'detailMetrics>/amountDiff' }, { path: 'Waers' }],
+                                    formatter: '.formatAmount'
+                                }" />
+                            </HBox>
+                            <VBox alignItems="Center" class="billDetailVerifyBadge">
+                                <core:Icon src="sap-icon://accept" size="2rem"
+                                    color="{= ${detailMetrics>/amountVerifyOk} ? '#107e3e' : '#bb0000' }" />
+                                <ObjectStatus text="{path: 'detailMetrics>/amountVerifyOk', formatter: '.formatVerifyStatus'}"
+                                    state="{path: 'detailMetrics>/amountVerifyOk', formatter: '.formatVerifyState'}"
+                                    class="sapUiTinyMarginTop" />
+                            </VBox>
+                        </VBox>
+                    </VBox>
+
+                    <!-- Card 5: Quantity verification -->
+                    <VBox class="billDetailCard invoiceCardQuantity">
+                        <HBox alignItems="Center" class="billDetailCardHeader">
+                            <core:Icon src="sap-icon://compare" size="1.25rem" color="#0070f2" class="sapUiTinyMarginEnd" />
+                            <Title text="{i18n>cardQtyVerify}" level="H5" />
+                        </HBox>
+                        <VBox class="billDetailCardBody">
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>kpiQty}" />
+                                <Text text="{
+                                    parts: [
+                                        { path: 'billItem>/Menge' },
+                                        { path: 'billItem>/Meins' }
+                                    ],
+                                    formatter: '.formatQty'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelGrQty}" />
+                                <Text text="{
+                                    parts: [
+                                        { path: 'TotalQty' },
+                                        { path: 'Meins' }
+                                    ],
+                                    formatter: '.formatQty'
+                                }" />
+                            </HBox>
+                            <HBox justifyContent="SpaceBetween" class="billDetailFieldRow">
+                                <Label text="{i18n>labelDiffQty}" />
+                                <Text text="{
+                                    parts: [
+                                        { path: 'detailMetrics>/qtyDiff' },
+                                        { path: 'Meins' }
+                                    ],
+                                    formatter: '.formatQty'
+                                }" />
+                            </HBox>
+                            <VBox alignItems="Center" class="billDetailVerifyBadge">
+                                <core:Icon src="sap-icon://accept" size="2rem"
+                                    color="{= ${detailMetrics>/qtyVerifyOk} ? '#107e3e' : '#bb0000' }" />
+                                <ObjectStatus text="{path: 'detailMetrics>/qtyVerifyOk', formatter: '.formatVerifyStatus'}"
+                                    state="{path: 'detailMetrics>/qtyVerifyOk', formatter: '.formatVerifyState'}"
+                                    class="sapUiTinyMarginTop" />
+                            </VBox>
+                        </VBox>
+                    </VBox>
+                </VBox>
+            </VBox>
+        </content>
+        <footer>
+            <OverflowToolbar design="Footer" class="billDetailFooter">
+                <ToolbarSpacer />
+                <Button text="{path: 'IvZlspr', formatter: '.formatBillActionText'}"
+                    icon="{path: 'IvZlspr', formatter: '.formatBillActionIcon'}"
+                    type="Emphasized" press=".onCreateInvoice" />
+            </OverflowToolbar>
+        </footer>
+    </Page>
+</mvc:View>
